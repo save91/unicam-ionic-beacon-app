@@ -6,7 +6,7 @@ angular.module('todo.services.beacons',[])
   var stato = {messaggio: ''};
   var aggiornamento = function() {
   beacons = [];
-	stato.messaggio = 'Ricerca in corso';
+	stato.messaggio = 'Ricerca in corso...';
   $http({
         method: 'GET',
         url: 'http://192.168.0.51/stage/beacons.php'

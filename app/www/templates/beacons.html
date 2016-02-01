@@ -1,9 +1,9 @@
 <ion-view view-title="Beacons">
-    
+
     <!-- Contenuto della pagina principale -->
     <ion-content>
         <div class="list">
-            <a data-ng-repeat="beacon in beacons" class="item item-thumbnail-left" href="#/beacon/{{beacon.id}}">
+            <a collection-repeat="beacon in beacons" class="item item-thumbnail-left" href="#/beacon/{{beacon.id}}">
                 <img ng-src="{{beacon.url}}">
                 <h2>{{beacon.nome}}</h2>
                 <p>{{beacon.descrizione}}</p>
