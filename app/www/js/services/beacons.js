@@ -1,5 +1,5 @@
 angular.module('todo.services.beacons',[])
-
+.constant("IP_SERVER", "192.168.24.100:8000")
 .factory('Beacons', function($http, $ionicPopup) {
 
 	var beacons = [];
@@ -9,7 +9,7 @@ angular.module('todo.services.beacons',[])
 	stato.messaggio = 'Ricerca in corso...';
   $http({
         method: 'GET',
-        url: 'http://192.168.0.51/stage/beacons.php'
+        url: 'http://' + IP_SERVER + '/beacons'
       }).then(function(response) {
         for(var i = 0;i < response.data.length;i++)
         {
@@ -49,7 +49,7 @@ angular.module('todo.services.beacons',[])
       };
       $http({
         method: 'GET',
-        url: 'http://192.168.0.51/stage/beacon.php?id=' + elem
+        url: 'http://' + IP_SERVER + '/beacon/' + elem
       }).then(function(response) {
         beacon.id = response.data.id;
         beacon.nome = response.data.nome;
