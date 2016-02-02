@@ -11,7 +11,7 @@
         <div class="item item-image">
           <img src="{{beacon.url}}">
         </div>
-        <button on-tap="apri()" class="button button-block button-positive" ng-disabled="data.bloccato">Apri</button>
+        <button ng-repeat="azione in beacon.azioni" on-tap="comando({{azione}})" class="button button-block button-positive" ng-disabled="data.bloccato">{{azione.nome}}</button>
       </div>
         </ion-content>
   <!-- Fine contenuto della pagina principale-->

@@ -1,6 +1,9 @@
 angular.module('todo.services.beacons',[])
-.constant("IP_SERVER", "192.168.24.100:8000")
-.factory('Beacons', function($http, $ionicPopup) {
+.constant("myServer", {
+		"url": "http://192.168.1.147",
+		"port": "80"
+})
+.factory('Beacons', function($http, $ionicPopup, myServer) {
 
 	var beacons = [];
   var stato = {messaggio: ''};
@@ -9,7 +12,7 @@ angular.module('todo.services.beacons',[])
 	stato.messaggio = 'Ricerca in corso...';
   $http({
         method: 'GET',
-        url: 'http://' + IP_SERVER + '/beacons'
+        url: myServer.url + ':' + myServer.port + '/beacons'
       }).then(function(response) {
         for(var i = 0;i < response.data.length;i++)
         {
@@ -40,21 +43,34 @@ angular.module('todo.services.beacons',[])
       aggiornamento();
       return beacons;
     },
+		comando: function(url) {
+			$http({
+        method: 'GET',
+        url: myServer.url + ':' + myServer.port + '/' + url
+      }).then(function(response) {
+        console.log("OK");
+      }, function(response) {
+        console.log("ERRORE");
+      });
+		},
     getBeacon: function(elem) {
       var beacon = {
         id :'',
         nome: '',
         descrizione: '',
-        url: ''
+        url: '',
+				azioni: [{nome: 'Test', azione: 'accendi'}]
       };
       $http({
         method: 'GET',
-        url: 'http://' + IP_SERVER + '/beacon/' + elem
+				cache: false,
+        url: myServer.url + ':' + myServer.port + '/beacon/' + elem
       }).then(function(response) {
         beacon.id = response.data.id;
         beacon.nome = response.data.nome;
         beacon.descrizione = response.data.descrizione;
-        beacon.url = response.data.url
+        beacon.url = response.data.url;
+				beacon.azioni = response.data.azioni;
       }, function(response) {
         var alertPopup = $ionicPopup.alert({
           title: 'ERRORE!',
