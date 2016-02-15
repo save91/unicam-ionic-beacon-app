@@ -1,0 +1,23 @@
+<ion-view view-title="Dispositivi">
+
+    <!-- Contenuto della pagina principale -->
+    <ion-content>
+        <div class="list">
+            <div collection-repeat="dispositivo in dispositivi" class="item item-thumbnail-left item-toggle">
+                <img ng-src="img/ionic.png">
+                <h2>{{dispositivo.nome}}</h2>
+                <p>{{dispositivo.descrizione}}</p>
+                <label class="toggle toggle-assertive">
+                  <input type="checkbox" ng-model="dispositivo.stato" ng-change="accendi(dispositivo)">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+            </div>
+        </div>
+        <h2>{{stato.messaggio}}</h2>
+        <button on-tap="aggiorna()" class="button button-block button-positive">Aggiorna</button>
+        <div class="padding"></div><div class="padding"></div>
+    </ion-content>
+  <!-- Fine contenuto della pagina principale-->
+</ion-view>

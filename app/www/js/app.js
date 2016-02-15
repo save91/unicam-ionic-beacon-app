@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 //var app = angular.module('app', ['ionic','app.controllers.home','ngCordova'])
-var app = angular.module('app', ['ionic','app.controllers.home','app.controllers.beacons','app.controllers.beacon','todo.services.beacons'])
+var app = angular.module('app', ['ionic','app.controllers.home','app.controllers.dispositivi','todo.services.dispositivi'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -21,4 +21,8 @@ var app = angular.module('app', ['ionic','app.controllers.home','app.controllers
       StatusBar.styleDefault();
     }
   });
+})
+.constant("MY_SERVER", {
+		"url": "http://192.168.24.100",
+		"port": "8000"
 })
