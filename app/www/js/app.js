@@ -1,10 +1,6 @@
 // Ionic Starter App
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-//var app = angular.module('app', ['ionic','app.controllers.home','ngCordova'])
-var app = angular.module('app', ['ionic','app.controllers.home','app.controllers.dispositivi','todo.services.dispositivi'])
+var app = angular.module('app', ['ionic','app.controllers.home','ngCordova','app.controllers.dispositivi','todo.services.dispositivi'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -23,6 +19,6 @@ var app = angular.module('app', ['ionic','app.controllers.home','app.controllers
   });
 })
 .constant("MY_SERVER", {
-		"url": "http://192.168.24.100",
+		"url": "http://192.168.1.147",
 		"port": "8000"
 })

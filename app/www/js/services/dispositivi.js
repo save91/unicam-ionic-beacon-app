@@ -3,8 +3,6 @@ angular.module('todo.services.dispositivi',[])
 .factory('Dispositivi', function($http, $ionicPopup, MY_SERVER) {
 
 	var dispositivi = [];
-  var stato = {messaggio: ''};
-
 
   return {
   	all: function() {
@@ -15,9 +13,6 @@ angular.module('todo.services.dispositivi',[])
 						return response.data;
 					});
   	},
-    stato: function() {
-      return stato;
-    },
 		comando: function(url) {
 			$http({
         method: 'GET',
