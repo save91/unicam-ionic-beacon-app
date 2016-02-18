@@ -11,9 +11,10 @@ angular.module('app.controllers.dispositivi', [])
            for(var i = 0; i < pluginResult.beacons.length; i++) {
                uniqueBeaconKey = pluginResult.beacons[i].major + ":" + pluginResult.beacons[i].minor;
                for(var j = 0; j < $scope.dispositivi.length; j++) {
-                  if(uniqueBeaconKey === $scope.dispositivi[j].major + ":" + $scope.dispositivi[j].minor)
-                    $scope.dispositivi[j].distanza = pluginResult.beacons[i].proximity;
-                    if($scope.dispositivi[j].distanza === "ProximityImmediate") {
+                  if(uniqueBeaconKey === $scope.dispositivi[j].major + ":" + $scope.dispositivi[j].minor) {
+                    $scope.dispositivi[j].proximity = pluginResult.beacons[i].proximity;
+                    $scope.dispositivi[j].distanza = pluginResult.beacons[i].accuracy;
+                    if($scope.dispositivi[j].proximity === "ProximityImmediate") {
                       $scope.dispositivi[j].disabilitato = false;
                       if($scope.dispositivi[j].automatico) {
                         $scope.accendi($scope.dispositivi[j]);
@@ -25,6 +26,7 @@ angular.module('app.controllers.dispositivi', [])
                       }
                     }
                   }
+                }
             }
           $scope.$apply();
        });

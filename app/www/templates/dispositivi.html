@@ -7,6 +7,7 @@
                 <img ng-src="img/ionic.png">
                 <h2>{{dispositivo.nome}}</h2>
                 <p>{{dispositivo.descrizione}}</p>
+                <p ng-if="dispositivo.uuid !== 0">Proximity: {{dispositivo.proximity}}</p>
                 <p ng-if="dispositivo.uuid !== 0">Distanza: {{dispositivo.distanza}}</p>
                 <label ng-if="dispositivo.uuid === 0 || !dispositivo.automatico" class="toggle toggle-assertive">
                   <input type="checkbox" ng-disabled="dispositivo.disabilitato" ng-model="dispositivo.stato" ng-change="cambia_stato(dispositivo)">
