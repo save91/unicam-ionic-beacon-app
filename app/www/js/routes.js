@@ -10,4 +10,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/dispositivi.html',
     controller: 'DispositiviCtrl'
   });
+  $stateProvider.state('registrati', {
+    url: '/registrati',
+    templateUrl: 'templates/registrati.html',
+    controller: 'RegistratiCtrl'
+  });
 });

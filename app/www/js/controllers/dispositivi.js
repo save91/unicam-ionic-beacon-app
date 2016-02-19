@@ -70,6 +70,4 @@ angular.module('app.controllers.dispositivi', [])
         Dispositivi.setGPIO(dispositivo.id_GPIO, 0);
       }
     }
-
-
 });

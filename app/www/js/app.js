@@ -1,6 +1,6 @@
 // Ionic Starter App
 
-var app = angular.module('app', ['ionic','app.controllers.home','ngCordova','app.controllers.dispositivi','todo.services.dispositivi'])
+var app = angular.module('app', ['ionic','app.controllers.home','ngCordova','app.controllers.dispositivi','app.controllers.registrati','todo.services.dispositivi','todo.services.registrati'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -20,5 +20,6 @@ var app = angular.module('app', ['ionic','app.controllers.home','ngCordova','app
 })
 .constant("MY_SERVER", {
 		"url": "http://192.168.1.147",
-		"port": "8000"
+		"port": "8000",
+    "get": function() { return this.url + ":" + this.port }
 })

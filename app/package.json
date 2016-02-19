@@ -21,7 +21,8 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
-    "com.unarin.cordova.beacon"
+    "com.unarin.cordova.beacon",
+    "cordova-plugin-camera"
   ],
   "cordovaPlatforms": []
 }

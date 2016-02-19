@@ -1,0 +1,34 @@
+<ion-view view-title="Registrati">
+
+  <!-- Contenuto della pagina principale -->
+  <ion-content>
+    <img class="full-image" src="{{utente.image.src}}" data-ng-click="nuovaImmagine()">
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Username</span>
+        <input type="text" data-ng-model="utente.username" data-ng-change="checkUsername()" placeholder="Username">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Nome</span>
+        <input type="text" data-ng-model="utente.nome" placeholder="Nome">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Cognome</span>
+        <input type="text" data-ng-model="utente.cognome" placeholder="Cognome">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Password</span>
+        <input type="password" data-ng-model="utente.password" placeholder="Password">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Conferma Password</span>
+        <input type="password" data-ng-model="utente.conferma_password" placeholder="Conferma password">
+      </label>
+    </div>
+    <button data-ng-click="registrati()" class="button button-block button-calm">
+      Registrati
+    </button>
+    <br><br><br>
+  </ion-content>
+  <!-- Fine contenuto della pagina principale-->
+</ion-view>
