@@ -1,4 +1,4 @@
-angular.module('todo.services.dispositivi',[])
+angular.module('app.services.dispositivi',[])
 
 .factory('Dispositivi', function($http, $ionicPopup, MY_SERVER) {
 

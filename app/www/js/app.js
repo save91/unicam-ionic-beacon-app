@@ -1,6 +1,15 @@
 // Ionic Starter App
 
-var app = angular.module('app', ['ionic','app.controllers.home','ngCordova','app.controllers.dispositivi','app.controllers.registrati','todo.services.dispositivi','todo.services.registrati'])
+var app = angular.module('app', [
+  'ionic',
+  'app.controllers.home',
+  'ngCordova',
+  'app.controllers.dispositivi',
+  'app.controllers.registrati',
+  'app.controllers.cerca',
+  'app.services.dispositivi',
+  'app.services.registrati',
+  'app.services.ibeacons'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {

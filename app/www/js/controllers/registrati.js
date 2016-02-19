@@ -3,10 +3,10 @@ angular.module('app.controllers.registrati', [])
 .controller('RegistratiCtrl', function($scope, $location, $ionicPlatform, $ionicPopup, $cordovaCamera, Registrati) {
   $scope.utente = {
     image: {src: "img/account.jpg"},
-    username: "a",
-    nome: "a",
-    cognome: "a",
-    password: "a",
+    username: "",
+    nome: "",
+    cognome: "",
+    password: "",
     conferma_password: ""
   };
   $scope.utente.image.src = "img/account.jpg";

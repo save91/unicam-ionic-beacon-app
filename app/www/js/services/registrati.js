@@ -1,4 +1,4 @@
-angular.module('todo.services.registrati',[])
+angular.module('app.services.registrati',[])
 
 .factory('Registrati', function($http, MY_SERVER) {
   return {
@@ -22,6 +22,6 @@ angular.module('todo.services.registrati',[])
         ).then(function(response) {
           return response.data;
           });
-        },
+        }
       };
 });
