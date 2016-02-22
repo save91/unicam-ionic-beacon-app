@@ -21,8 +21,13 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
-    "com.unarin.cordova.beacon",
-    "cordova-plugin-camera"
+    "cordova-plugin-camera",
+    {
+      "locator": "https://github.com/petermetz/cordova-plugin-ibeacon.git",
+      "id": "com.unarin.cordova.beacon"
+    }
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "ios"
+  ]
 }
