@@ -31,6 +31,7 @@ angular.module('app.controllers.dispositivi', [])
           $scope.$apply();
        });
        $cordovaBeacon.startRangingBeaconsInRegion($cordovaBeacon.createBeaconRegion("BlueUp", "ACFD065E-C3C0-11E3-9BBE-1A514932AC01"));
+
     });
 
     $scope.$on('$ionicView.enter',function(){

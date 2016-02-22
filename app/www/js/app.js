@@ -25,10 +25,11 @@ var app = angular.module('app', [
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+
   });
 })
 .constant("MY_SERVER", {
-		"url": "http://192.168.1.147",
+		"url": "http://192.168.1.149",
 		"port": "8000",
     "get": function() { return this.url + ":" + this.port }
 })

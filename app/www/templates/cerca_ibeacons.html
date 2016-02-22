@@ -1,8 +1,19 @@
 <ion-view view-title="Cerca iBeacons">
-
   <!-- Contenuto della pagina principale -->
   <ion-content>
-    <h1>Cerca iBeacons</h1>
+    <div class="list">
+      <div data-ng-repeat="(key, value) in beacons" class="item item-thumbnail-left item-button-right">
+        <img data-ng-src="img/BlueupMini.jpg">
+        <h2>BlueupMini</h2>
+        <p>Major: {{value.major}}</p>
+        <p>Minor: {{value.minor}}</p>
+        <p>Proximity: {{value.proximity}}</p>
+        <p>Distanza: {{value.accuracy}}</p>
+        <button class="button button-positive" data-ng-click="aggiungi(value.major, value.minor)">
+          Segnala
+        </button>
+      </div>
+    </div>
   </ion-content>
   <!-- Fine contenuto della pagina principale-->
 </ion-view>
