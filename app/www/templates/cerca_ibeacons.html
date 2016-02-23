@@ -9,7 +9,7 @@
         <p>Minor: {{value.minor}}</p>
         <p>Proximity: {{value.proximity}}</p>
         <p>Distanza: {{value.accuracy}}</p>
-        <button class="button button-positive" data-ng-click="aggiungi(value.major, value.minor)">
+        <button data-ng-if="!value.stato" class="button button-positive" data-ng-click="aggiungi(value.uuid, value.major, value.minor)">
           Segnala
         </button>
       </div>

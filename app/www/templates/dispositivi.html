@@ -3,6 +3,11 @@
     <!-- Contenuto della pagina principale -->
     <ion-content>
         <div class="list">
+          <div data-ng-if="!dispositivi.length" class="card">
+            <div class="item item-text-wrap">
+              Nessun dispositivo trovato.
+            </div>
+          </div>
             <div collection-repeat="dispositivo in dispositivi" class="item item-thumbnail-left item-toggle">
                 <img ng-src="img/ionic.png">
                 <h2>{{dispositivo.nome}}</h2>
