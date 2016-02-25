@@ -1,6 +1,6 @@
 angular.module('app.controllers.registrati', [])
 
-.controller('RegistratiCtrl', function($scope, $location, $ionicPlatform, $ionicPopup, $cordovaCamera, Registrati) {
+.controller('RegistratiCtrl', function($scope, $location, $ionicPlatform, $ionicPopup, $cordovaCamera, $http, Registrati) {
   $scope.utente = {
     image: {src: "img/account.jpg"},
     username: "",
@@ -39,11 +39,16 @@ angular.module('app.controllers.registrati', [])
 
   var callback = function(data) {
     valido = !data.trovato;
+
   }
 
   var callbackRegistrazione = function(data) {
     if(data.status === "ok") {
-      $location.path('home').replace();
+      window.localStorage['Authorization'] = 'Basic '+ window.btoa($scope.utente.username +':'+$scope.utente.password);
+      window.localStorage['utente'] = $scope.utente.nome;
+      window.localStorage['bloccato'] = true;
+      $http.defaults.headers.common.Authorization = window.localStorage['Authorization'];
+      $location.path('/');
     }
   }
 

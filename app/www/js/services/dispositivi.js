@@ -8,7 +8,7 @@ angular.module('app.services.dispositivi',[])
   	all: function() {
 			return $http({
 						method: 'GET',
-						url: MY_SERVER.url + ':' + MY_SERVER.port + '/dispositivi_output'
+						url: MY_SERVER.get() + '/dispositivi_output'
 					}).then(function(response) {
 						return response.data;
 					});
@@ -16,7 +16,7 @@ angular.module('app.services.dispositivi',[])
 		comando: function(url) {
 			$http({
         method: 'GET',
-        url: MY_SERVER.url + ':' + MY_SERVER.port + '/' + url
+        url: MY_SERVER.get() + '/' + url
       }).then(function(response) {
         console.log("OK");
       }, function(response) {
@@ -24,7 +24,7 @@ angular.module('app.services.dispositivi',[])
       });
 		},
 		setGPIO: function(id, value) {
-        return $http.post(MY_SERVER.url + ':' + MY_SERVER.port + '/gpio_set',
+        return $http.post(MY_SERVER.get() + '/gpio_set',
           {
             id: id,
             value: value

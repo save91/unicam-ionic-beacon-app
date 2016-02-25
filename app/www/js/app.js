@@ -7,9 +7,11 @@ var app = angular.module('app', [
   'app.controllers.dispositivi',
   'app.controllers.registrati',
   'app.controllers.cerca',
+  'app.controllers.login',
   'app.services.dispositivi',
   'app.services.registrati',
-  'app.services.ibeacons'])
+  'app.services.ibeacons',
+  'app.services.login'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {

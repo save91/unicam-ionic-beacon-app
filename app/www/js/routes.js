@@ -20,4 +20,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/cerca_ibeacons.html',
     controller: 'CercaCtrl'
   });
+  $stateProvider.state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  });
 });
