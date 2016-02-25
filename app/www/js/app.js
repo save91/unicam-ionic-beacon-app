@@ -7,7 +7,6 @@ var app = angular.module('app', [
   'app.controllers.dispositivi',
   'app.controllers.registrati',
   'app.controllers.cerca',
-  'app.controllers.login',
   'app.services.dispositivi',
   'app.services.registrati',
   'app.services.ibeacons',

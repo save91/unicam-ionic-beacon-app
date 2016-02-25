@@ -3,19 +3,13 @@
   <!-- Contenuto della pagina principale -->
   <ion-content>
     <div class="card">
-        <div class="item item-divider">
-            Benvenuto!
-        </div>
-        <div class="item item-text-wrap">
-            Quest'app ti permette di controllare il tuo ufficio in modo semplice e veloce!!!
-        </div>
+      <div class="item item-divider">
+        Benvenuto!
+      </div>
+      <div class="item item-text-wrap">
+        Quest'app ti permette di controllare il tuo ufficio in modo semplice e veloce!!!
+      </div>
     </div>
-    <a data-ng-if="utente.nome !== ''" href="#/cerca_ibeacons" class="button button-block button-positive">Cerca iBeacons</a>
-    <a data-ng-if="utente.nome !== ''" href="#/dispositivi" class="button button-block button-positive">Elenco dispositivi</a>
-    <a data-ng-if="utente.nome === ''" href="#/registrati" class="button button-block button-positive">Registrati</a>
-    <a data-ng-if="utente.nome === ''" href="#/login" class="button button-block button-positive">Login</a>
-    <button data-ng-if="utente.nome !== ''" data-ng-click="logout()" class="button button-block button-positive">Logout</button>
-
   </ion-content>
   <!-- Fine contenuto della pagina principale-->
 </ion-view>

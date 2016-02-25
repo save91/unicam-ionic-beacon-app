@@ -1,34 +1,37 @@
-<ion-view view-title="Registrati">
-
-  <!-- Contenuto della pagina principale -->
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Registrati</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeRegistrati()">Chiudi</button>
+    </div>
+  </ion-header-bar>
   <ion-content>
-    <img class="full-image" src="{{utente.image.src}}" data-ng-click="nuovaImmagine()">
+    <img class="full-image" src="{{datiRegistrazione.image.src}}" data-ng-click="nuovaImmagine()">
     <div class="list">
       <label class="item item-input item-stacked-label">
         <span class="input-label">Username</span>
-        <input type="text" data-ng-model="utente.username" data-ng-change="checkUsername()" placeholder="Username">
+        <input type="text" data-ng-model="datiRegistrazione.username" data-ng-change="checkUsername()" placeholder="Username">
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Nome</span>
-        <input type="text" data-ng-model="utente.nome" placeholder="Nome">
+        <input type="text" data-ng-model="datiRegistrazione.nome" placeholder="Nome">
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Cognome</span>
-        <input type="text" data-ng-model="utente.cognome" placeholder="Cognome">
+        <input type="text" data-ng-model="datiRegistrazione.cognome" placeholder="Cognome">
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Password</span>
-        <input type="password" data-ng-model="utente.password" placeholder="Password">
+        <input type="password" data-ng-model="datiRegistrazione.password" placeholder="Password">
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Conferma Password</span>
-        <input type="password" data-ng-model="utente.conferma_password" placeholder="Conferma password">
+        <input type="password" data-ng-model="datiRegistrazione.conferma_password" placeholder="Conferma password">
       </label>
     </div>
-    <button data-ng-click="registrati()" class="button button-block button-calm">
-      Registrati
-    </button>
+    <label class="item">
+      <button class="button button-block button-positive" ng-click="doRegistrati()">Registrati</button>
+    </label>
     <br><br><br>
   </ion-content>
-  <!-- Fine contenuto della pagina principale-->
-</ion-view>
+</ion-modal-view>

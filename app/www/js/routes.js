@@ -1,28 +1,57 @@
 app.config(function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/');
-  $stateProvider.state('home', {
-    url: '/',
-    templateUrl: 'templates/home.html',
+  $urlRouterProvider.otherwise('/app/home');
+  $stateProvider.state('app', {
+    url: '/app',
+    abstract: true,
+    templateUrl: 'templates/menu.html',
     controller: 'HomeCtrl'
   });
-  $stateProvider.state('dispositivi', {
+  $stateProvider.state('app.home', {
+    url: '/home',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/home.html'
+      }
+    }
+  });
+  $stateProvider.state('app.dispositivi', {
     url: '/dispositivi',
-    templateUrl: 'templates/dispositivi.html',
-    controller: 'DispositiviCtrl'
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/dispositivi.html',
+        controller: 'DispositiviCtrl'
+      }
+    }
+
   });
-  $stateProvider.state('registrati', {
+  $stateProvider.state('app.registrati', {
     url: '/registrati',
-    templateUrl: 'templates/registrati.html',
-    controller: 'RegistratiCtrl'
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/registrati.html',
+        controller: 'RegistratiCtrl'
+      }
+    }
+
   });
-  $stateProvider.state('cerca_ibeacons', {
+  $stateProvider.state('app.cerca_ibeacons', {
     url: '/cerca_ibeacons',
-    templateUrl: 'templates/cerca_ibeacons.html',
-    controller: 'CercaCtrl'
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/cerca_ibeacons.html',
+        controller: 'CercaCtrl'
+      }
+    }
+
   });
-  $stateProvider.state('login', {
+  $stateProvider.state('app.login', {
     url: '/login',
-    templateUrl: 'templates/login.html',
-    controller: 'LoginCtrl'
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+      }
+    }
+
   });
 });
