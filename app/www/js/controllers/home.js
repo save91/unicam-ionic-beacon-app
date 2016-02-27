@@ -6,7 +6,9 @@ angular.module('app.controllers.home', [])
 
     $scope.logout = function() {
       $http.defaults.headers.common.Authorization = "";
-      window.localStorage.clear();
+      window.localStorage['utente'] = '';
+      window.localStorage['bloccato'] = '';
+      window.localStorage['Authorization'] = '';
       $scope.utente.bloccato = false;
       $scope.utente.nome = "";
     }

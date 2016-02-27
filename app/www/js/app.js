@@ -5,11 +5,13 @@ var app = angular.module('app', [
   'app.controllers.home',
   'ngCordova',
   'app.controllers.dispositivi',
-  'app.controllers.registrati',
   'app.controllers.cerca',
+  'app.controllers.impostazioni',
   'app.services.dispositivi',
   'app.services.registrati',
+  'app.services.dispositivi',
   'app.services.ibeacons',
+  'app.services.impostazioni',
   'app.services.login'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -30,7 +32,7 @@ var app = angular.module('app', [
   });
 })
 .constant("MY_SERVER", {
-		"url": "http://192.168.1.149",
-		"port": "8000",
-    "get": function() { return this.url + ":" + this.port }
+		"url": window.localStorage['server_url'] ? window.localStorage['server_url'].split(':')[0] : "192.168.1.149",
+		"port": window.localStorage['server_url'] ? window.localStorage['server_url'].split(':')[1] : "8000",
+    "get": function() { return "http://" + this.url + ":" + this.port }
 })

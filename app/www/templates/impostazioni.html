@@ -1,0 +1,19 @@
+<ion-view view-title="Impostazioni">
+    <!-- Contenuto della pagina principale -->
+    <ion-content>
+        <div class="list">
+          <label class="item item-input">
+            <span class="input-label">Indirizzo</span>
+            <input type="text" ng-model="impostazioni.url">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">porta</span>
+            <input type="text" ng-model="impostazioni.port">
+          </label>
+          <label class="item">
+            <button class="button button-block button-positive" ng-click="salva()">Salva</button>
+          </label>
+        </div>
+    </ion-content>
+  <!-- Fine contenuto della pagina principale-->
+</ion-view>

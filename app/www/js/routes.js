@@ -14,6 +14,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   });
+
   $stateProvider.state('app.dispositivi', {
     url: '/dispositivi',
     views: {
@@ -22,8 +23,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'DispositiviCtrl'
       }
     }
-
   });
+
+  $stateProvider.state('app.impostazioni', {
+    url: '/impostazioni',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/impostazioni.html',
+        controller: 'ImpostazioniCtrl'
+      }
+    }
+  });
+
+
   $stateProvider.state('app.registrati', {
     url: '/registrati',
     views: {
