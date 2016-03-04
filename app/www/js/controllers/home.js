@@ -52,14 +52,12 @@ angular.module('app.controllers.home', [])
     for(var i = 1; i < 255; i++) {
       Settings.hello("192.168.1." + i).then(function(resIp) {
         $scope.servers.push({ip: resIp});
+        $scope.$apply();
       }, function(resIp) {
         console.log("IP " + resIp);
       })
       .finally(function() {
         count++;
-        if(count === 253) {
-          $scope.$apply();
-        }
       });
     }
   }
@@ -138,7 +136,18 @@ angular.module('app.controllers.home', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    Login.login($scope.loginData.username, $scope.loginData.password).then(callbackLogin);
+    Login.login($scope.loginData.username, $scope.loginData.password)
+    .then(function(user) {
+      window.localStorage['Authorization'] = 'Basic '+ window.btoa($scope.loginData.username +':'+$scope.loginData.password);
+      window.localStorage['user'] = user;
+      $http.defaults.headers.common.Authorization = window.localStorage['Authorization'];
+      $scope.closeLogin();
+    }, function(error) {
+      $ionicPopup.alert({
+        title: 'Errore',
+        template: error
+      });
+    });
   };
 
   var callbackLogin = function(response) {

@@ -1,6 +1,6 @@
 angular.module('app.controllers.devices', [])
 
-.controller('DevicesCtrl', function($scope, $rootScope, $ionicPlatform, $cordovaBeacon, Devices) {
+.controller('DevicesCtrl', function($scope, $rootScope, $ionicPopup, $ionicPlatform, $cordovaBeacon, Devices) {
   $scope.devices = [];
   $scope.beacons = [];
   $ionicPlatform.ready(function() {
@@ -32,16 +32,23 @@ angular.module('app.controllers.devices', [])
     $cordovaBeacon.startRangingBeaconsInRegion($cordovaBeacon.createBeaconRegion("BlueUp", "ACFD065E-C3C0-11E3-9BBE-1A514932AC01"));
   });
 
+  var updateDevice = function() {
+    Devices.all().then(function(response) {
+      $scope.devices = response.data;
+    }, function(response) {
+      $ionicPopup.alert({
+        title: 'Errore',
+        template: response.data
+      });
+    });
+  }
+
   $scope.$on('$ionicView.enter',function(){
-    Devices.all().then(callback);
+    updateDevice();
   });
 
-  var callback = function(data) {
-    $scope.devices = data;
-  };
-
-  $scope.aggiorna = function() {
-    Devices.all().then(callback);
+  $scope.update = function() {
+    updateDevice();
   };
 
   $scope.on = function(device) {

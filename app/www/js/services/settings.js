@@ -9,7 +9,7 @@ angular.module('app.services.settings',[])
         deferred.resolve(ip);
       }, function(req,res) {
         deferred.reject(ip);
-      })
+      });
       return deferred.promise;
     }
   };

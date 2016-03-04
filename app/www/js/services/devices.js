@@ -1,6 +1,6 @@
 angular.module('app.services.devices',[])
 
-.factory('Devices', function($http, $ionicPopup, MY_SERVER) {
+.factory('Devices', function($http, MY_SERVER, $q) {
 
 	var devices = [];
 
@@ -8,11 +8,9 @@ angular.module('app.services.devices',[])
 		all: function() {
 			return $http({
 				method: 'GET',
-				url: MY_SERVER.get() + '/devices_output'
-			}).then(function(response) {
-				return response.data;
+				url: MY_SERVER.get() + '/device/output'
 			});
-		},
+		}/*,
 		comando: function(url) {
 			$http({
 				method: 'GET',
@@ -22,16 +20,13 @@ angular.module('app.services.devices',[])
 			}, function(response) {
 				console.log("ERRORE");
 			});
-		},
+		}*/,
 		setGPIO: function(id, value) {
-			return $http.post(MY_SERVER.get() + '/gpio_set',
+			return $http.put(MY_SERVER.get() + '/gpio/' + id + '/set',
 			{
-				id: id,
 				value: value
 			}
-		).then(function(response) {
-			return response.data;
-		});
+		);
 	}
 };
 });
