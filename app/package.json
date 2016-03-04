@@ -25,6 +25,10 @@
     {
       "locator": "https://github.com/petermetz/cordova-plugin-ibeacon.git",
       "id": "com.unarin.cordova.beacon"
+    },
+    {
+      "locator": "https://github.com/salbahra/cordova-plugin-networkinterface.git",
+      "id": "cordova-plugin-networkinterface"
     }
   ],
   "cordovaPlatforms": [

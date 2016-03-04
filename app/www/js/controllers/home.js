@@ -1,6 +1,6 @@
 angular.module('app.controllers.home', [])
 
-.controller('HomeCtrl', function($scope, $ionicPopup, $ionicModal, Login, Signup, Settings, $ionicPlatform, $cordovaCamera, $http) {
+.controller('HomeCtrl', function($scope,MY_SERVER, $ionicPopup, $ionicModal, Login, Signup, Settings, $ionicPlatform, $cordovaCamera, $http) {
   $scope.utente = {};
 
   $scope.logout = function() {
@@ -16,7 +16,7 @@ angular.module('app.controllers.home', [])
   //Test promise
   $scope.test = function() {
     $scope.message = "Ricerca";
-    Settings.hello().then(function(greeting) {
+    Settings.hello(MY_SERVER.url).then(function(greeting) {
       $ionicPopup.alert({
         title: 'Success',
         template: 'Success: ' + greeting
@@ -34,13 +34,36 @@ angular.module('app.controllers.home', [])
   //End test promise
 
   //Start ip
-  var ip = "";
-  $scope.ip = function() {
+  $scope.ip = "";
+  $scope.getIp = function() {
     networkinterface.getIPAddress(function (readIp) {
-      ip = readIp;
+      $scope.ip = readIp;
+      $scope.$apply();
     });
   }
   //End ip
+
+  //Start search server
+  $scope.servers = [];
+
+  $scope.getServers = function() {
+    var count = 0;
+    $scope.servers = [];
+    for(var i = 1; i < 255; i++) {
+      Settings.hello("192.168.1." + i).then(function(resIp) {
+        $scope.servers.push({ip: resIp});
+      }, function(resIp) {
+        console.log("IP " + resIp);
+      })
+      .finally(function() {
+        count++;
+        if(count === 253) {
+          $scope.$apply();
+        }
+      });
+    }
+  }
+  //End
 
   $scope.$on('$ionicView.enter',function(){
     $scope.utente.name = window.localStorage['user'] || "";

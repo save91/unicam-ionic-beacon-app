@@ -14,8 +14,12 @@
       Verifica connessione
     </button>
     <span>IP: {{ip}}</span>
-    <button class="button button-block button-outline button-positive" data-ng-click="ip()">
+    <button class="button button-block button-outline button-positive" data-ng-click="getIp()">
       Lettura IP
+    </button>
+    <span ng-repeat="server in servers">IP Server: {{server.ip}}<br></span>
+    <button class="button button-block button-outline button-positive" data-ng-click="getServers()">
+      Ricerca Server
     </button>
   </ion-content>
   <!-- Fine contenuto della pagina principale-->
