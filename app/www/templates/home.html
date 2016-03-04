@@ -1,5 +1,4 @@
 <ion-view view-title="ProximitySolutions">
-
   <!-- Contenuto della pagina principale -->
   <ion-content>
     <div class="card">
@@ -10,6 +9,14 @@
         Quest'app ti permette di controllare il tuo ufficio in modo semplice e veloce!!!
       </div>
     </div>
+    <span>Stato: {{message}}</span>
+    <button class="button button-block button-outline button-positive" data-ng-click="test()">
+      Verifica connessione
+    </button>
+    <span>IP: {{ip}}</span>
+    <button class="button button-block button-outline button-positive" data-ng-click="ip()">
+      Lettura IP
+    </button>
   </ion-content>
   <!-- Fine contenuto della pagina principale-->
 </ion-view>

@@ -1,6 +1,6 @@
 angular.module('app.controllers.settings', [])
 
-.controller('SettingsCtrl', function($scope, MY_SERVER, Settings) {
+.controller('SettingsCtrl', function($scope, $location, MY_SERVER, Settings) {
   $scope.settings = {};
   $scope.$on('$ionicView.enter',function(){
     $scope.settings.url = MY_SERVER.url;
@@ -9,5 +9,6 @@ angular.module('app.controllers.settings', [])
   $scope.salva = function() {
     MY_SERVER.url = $scope.settings.url;
     MY_SERVER.port = $scope.settings.port;
+    $location.path("#/");
   };
 })

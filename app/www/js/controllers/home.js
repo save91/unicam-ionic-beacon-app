@@ -1,6 +1,6 @@
 angular.module('app.controllers.home', [])
 
-.controller('HomeCtrl', function($scope, $ionicPopup, $ionicModal, Login, Signup, $ionicPlatform, $cordovaCamera, $http) {
+.controller('HomeCtrl', function($scope, $ionicPopup, $ionicModal, Login, Signup, Settings, $ionicPlatform, $cordovaCamera, $http) {
   $scope.utente = {};
 
   $scope.logout = function() {
@@ -11,6 +11,36 @@ angular.module('app.controllers.home', [])
     $scope.utente.block = false;
     $scope.utente.name = "";
   }
+
+
+  //Test promise
+  $scope.test = function() {
+    $scope.message = "Ricerca";
+    Settings.hello().then(function(greeting) {
+      $ionicPopup.alert({
+        title: 'Success',
+        template: 'Success: ' + greeting
+      });
+    }, function(reason) {
+      $ionicPopup.alert({
+        title: 'Failed',
+        template: 'Failed: ' + reason
+      });
+    })
+    .finally(function() {
+      $scope.message = "";
+    });
+  }
+  //End test promise
+
+  //Start ip
+  var ip = "";
+  $scope.ip = function() {
+    networkinterface.getIPAddress(function (readIp) {
+      ip = readIp;
+    });
+  }
+  //End ip
 
   $scope.$on('$ionicView.enter',function(){
     $scope.utente.name = window.localStorage['user'] || "";
