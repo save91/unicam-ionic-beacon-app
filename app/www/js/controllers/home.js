@@ -1,21 +1,20 @@
-
 angular.module('app.controllers.home', [])
 
-.controller('HomeCtrl', function($scope, $ionicPopup, $ionicModal, Login, Registrati,$ionicPlatform, $cordovaCamera, $http) {
+.controller('HomeCtrl', function($scope, $ionicPopup, $ionicModal, Login, Signup, $ionicPlatform, $cordovaCamera, $http) {
     $scope.utente = {};
 
     $scope.logout = function() {
       $http.defaults.headers.common.Authorization = "";
-      window.localStorage['utente'] = '';
-      window.localStorage['bloccato'] = '';
+      window.localStorage['user'] = '';
+      window.localStorage['block'] = '';
       window.localStorage['Authorization'] = '';
-      $scope.utente.bloccato = false;
-      $scope.utente.nome = "";
+      $scope.utente.block = false;
+      $scope.utente.name = "";
     }
 
     $scope.$on('$ionicView.enter',function(){
-      $scope.utente.nome = window.localStorage['utente'] || "";
-      $scope.utente.bloccato = window.localStorage['bloccato'] || false;
+      $scope.utente.name = window.localStorage['user'] || "";
+      $scope.utente.block = window.localStorage['block'] || false;
       $http.defaults.headers.common.Authorization = window.localStorage['Authorization'] || "";
     });
 
@@ -23,7 +22,7 @@ angular.module('app.controllers.home', [])
     $scope.loginData = {};
 
     // Form data for the login modal
-    $scope.datiRegistrazione = {
+    $scope.signupData = {
       image: {src: "img/account.jpg"}
     };
 
@@ -41,9 +40,9 @@ angular.module('app.controllers.home', [])
         saveToPhotoAlbum: false,
         correctOrientation:true
       };
-      $scope.nuovaImmagine = function() {
+      $scope.newImage = function() {
         $cordovaCamera.getPicture(options).then(function(imageData) {
-          $scope.datiRegistrazione.image.src = "data:image/jpeg;base64," + imageData;
+          $scope.signupData.image.src = "data:image/jpeg;base64," + imageData;
         }, function(err) {
           // error
         });
@@ -57,11 +56,11 @@ angular.module('app.controllers.home', [])
       $scope.modalLogin = modal;
     });
 
-    // Create the registration modal that we will use later
-    $ionicModal.fromTemplateUrl('templates/registrati.html', {
+    // Create the signupon modal that we will use later
+    $ionicModal.fromTemplateUrl('templates/signup.html', {
       scope: $scope
     }).then(function(modal) {
-      $scope.modalRegistrati = modal;
+      $scope.modalSignup = modal;
     });
 
     // Triggered in the login modal to close it
@@ -75,13 +74,13 @@ angular.module('app.controllers.home', [])
     };
 
     // Triggered in the login modal to close it
-    $scope.closeRegistrati = function() {
-      $scope.modalRegistrati.hide();
+    $scope.closeSignup = function() {
+      $scope.modalSignup.hide();
     };
 
     // Open the login modal
-    $scope.registrati = function() {
-      $scope.modalRegistrati.show();
+    $scope.signup = function() {
+      $scope.modalSignup.show();
     };
 
     // Perform the login action when the user submits the login form
@@ -89,13 +88,13 @@ angular.module('app.controllers.home', [])
       Login.login($scope.loginData.username, $scope.loginData.password).then(callbackLogin);
     };
 
-    var callbackLogin = function(risposta) {
-      $scope.bloccato = false;
-      console.log(risposta);
+    var callbackLogin = function(response) {
+      $scope.block = false;
+      console.log(response);
       if(risposta.status === 200) {
         window.localStorage['Authorization'] = 'Basic '+ window.btoa($scope.loginData.username +':'+$scope.loginData.password);
-        window.localStorage['utente'] = risposta.utente.nome;
-        window.localStorage['bloccato'] = risposta.utente.bloccato;
+        window.localStorage['user'] = risposta.user.name;
+        window.localStorage['block'] = risposta.user.block;
         $http.defaults.headers.common.Authorization = window.localStorage['Authorization'];
         $scope.closeLogin();
       } else {
@@ -108,29 +107,28 @@ angular.module('app.controllers.home', [])
 
     var title = "Errore!";
     var template = "";
-    var valido = false;
+    var ok = false;
 
     var callback = function(data) {
-      valido = !data.trovato;
-
+      ok = !data.found;
     }
 
-    var callbackRegistrazione = function(data) {
+    var callbackSignup = function(data) {
       if(data.status === "ok") {
-        window.localStorage['Authorization'] = 'Basic '+ window.btoa($scope.datiRegistrazione.username +':'+$scope.datiRegistrazione.password);
-        window.localStorage['utente'] = $scope.datiRegistrazione.nome;
-        window.localStorage['bloccato'] = true;
+        window.localStorage['Authorization'] = 'Basic '+ window.btoa($scope.datiSignup.username +':'+$scope.datiSignup.password);
+        window.localStorage['user'] = $scope.signupData.nome;
+        window.localStorage['block'] = true;
         $http.defaults.headers.common.Authorization = window.localStorage['Authorization'];
-        $scope.closeRegistrati();
+        $scope.closeSignup();
       }
     }
 
     $scope.checkUsername = function() {
-      Registrati.checkUsername($scope.datiRegistrazione.username).then(callback);
+      Signup.checkUsername($scope.signupData.username).then(callback);
     }
 
-    $scope.doRegistrati = function () {
-      if($scope.datiRegistrazione.username.trim() === "" || $scope.datiRegistrazione.nome.trim() === "" || $scope.datiRegistrazione.cognome.trim() === "" || $scope.datiRegistrazione.password.trim() === "") {
+    $scope.doSignup = function () {
+      if($scope.signupData.username.trim() === "" || $scope.signupData.nome.trim() === "" || $scope.signupData.cognome.trim() === "" || $scope.signupData.password.trim() === "") {
         template = "Compila tutti i campi";
         $ionicPopup.alert({
           title: title,
@@ -142,7 +140,7 @@ angular.module('app.controllers.home', [])
           title: title,
           template: template
         });
-      }else if ($scope.datiRegistrazione.password !== $scope.datiRegistrazione.conferma_password) {
+      }else if ($scope.signupData.password !== $scope.signupData.conferma_password) {
         template = "Le password non coincidono";
         $ionicPopup.alert({
           title: title,
@@ -155,7 +153,7 @@ angular.module('app.controllers.home', [])
         });
         conferma.then(function(res) {
           if(res) {
-            Registrati.registrati($scope.datiRegistrazione).then(callbackRegistrazione);
+            Signup.signup($scope.signupData).then(callbackRegistrazione);
           }
         });
       }

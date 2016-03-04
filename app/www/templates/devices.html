@@ -1,0 +1,29 @@
+<ion-view view-title="Devices">
+
+    <!-- Contenuto della pagina principale -->
+    <ion-content>
+        <div class="list">
+          <div data-ng-if="!devices.length" class="card">
+            <div class="item item-text-wrap">
+              Nessun device found.
+            </div>
+          </div>
+            <div collection-repeat="device in devices" class="item item-thumbnail-left item-toggle">
+                <img ng-src="img/ionic.png">
+                <h2>{{device.name}}</h2>
+                <p>{{device.descrizione}}</p>
+                <p ng-if="device.uuid !== 0">Proximity: {{device.proximity}}</p>
+                <p ng-if="device.uuid !== 0">Distanza: {{device.distanza}}</p>
+                <label ng-if="device.uuid === 0 || !device.automatic" class="toggle toggle-assertive">
+                  <input type="checkbox" ng-disabled="device.disabilitato" ng-model="device.state" ng-change="change_state(device)">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+            </div>
+        </div>
+        <button on-tap="aggiorna()" class="button button-block button-positive">Aggiorna</button>
+        <div class="padding"></div><div class="padding"></div>
+    </ion-content>
+  <!-- Fine contenuto della pagina principale-->
+</ion-view>

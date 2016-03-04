@@ -1,6 +1,6 @@
-angular.module('app.services.registrati',[])
+angular.module('app.services.signup',[])
 
-.factory('Registrati', function($http, MY_SERVER) {
+.factory('Signup', function($http, MY_SERVER) {
   return {
     checkUsername: function(username) {
         return $http.post(MY_SERVER.get() + '/check_username',
@@ -11,12 +11,12 @@ angular.module('app.services.registrati',[])
           return response.data;
           });
         },
-    registrati: function(user) {
-        return $http.post(MY_SERVER.get() + '/aggiungi_utente',
+    signup: function(user) {
+        return $http.post(MY_SERVER.get() + '/add_user',
           {
             username: user.username,
-            nome: user.nome,
-            cognome: user.cognome,
+            name: user.name,
+           lastname: user.lastname,
             password: user.password,
           }
         ).then(function(response) {

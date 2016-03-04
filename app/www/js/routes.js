@@ -15,43 +15,32 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
   });
 
-  $stateProvider.state('app.dispositivi', {
-    url: '/dispositivi',
+  $stateProvider.state('app.devices', {
+    url: '/devices',
     views: {
       'menuContent': {
-        templateUrl: 'templates/dispositivi.html',
-        controller: 'DispositiviCtrl'
+        templateUrl: 'templates/devices.html',
+        controller: 'DevicesCtrl'
       }
     }
   });
 
-  $stateProvider.state('app.impostazioni', {
-    url: '/impostazioni',
+  $stateProvider.state('app.settings', {
+    url: '/settings',
     views: {
       'menuContent': {
-        templateUrl: 'templates/impostazioni.html',
-        controller: 'ImpostazioniCtrl'
+        templateUrl: 'templates/settings.html',
+        controller: 'SettingsCtrl'
       }
     }
   });
 
-
-  $stateProvider.state('app.registrati', {
-    url: '/registrati',
+  $stateProvider.state('app.search_ibeacons', {
+    url: '/search_ibeacons',
     views: {
       'menuContent': {
-        templateUrl: 'templates/registrati.html',
-        controller: 'RegistratiCtrl'
-      }
-    }
-
-  });
-  $stateProvider.state('app.cerca_ibeacons', {
-    url: '/cerca_ibeacons',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/cerca_ibeacons.html',
-        controller: 'CercaCtrl'
+        templateUrl: 'templates/search_ibeacons.html',
+        controller: 'SearchCtrl'
       }
     }
 

@@ -4,14 +4,14 @@ var app = angular.module('app', [
   'ionic',
   'app.controllers.home',
   'ngCordova',
-  'app.controllers.dispositivi',
-  'app.controllers.cerca',
-  'app.controllers.impostazioni',
-  'app.services.dispositivi',
-  'app.services.registrati',
-  'app.services.dispositivi',
+  'app.controllers.devices',
+  'app.controllers.search',
+  'app.controllers.settings',
+  'app.services.devices',
+  'app.services.signup',
+  'app.services.devices',
   'app.services.ibeacons',
-  'app.services.impostazioni',
+  'app.services.settings',
   'app.services.login'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

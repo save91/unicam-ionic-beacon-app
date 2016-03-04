@@ -1,7 +1,7 @@
 
-angular.module('app.controllers.cerca', [])
+angular.module('app.controllers.search', [])
 
-.controller('CercaCtrl', function($scope, $rootScope, $ionicPlatform, $cordovaBeacon, $ionicPopup, Beacons) {
+.controller('SearchCtrl', function($scope, $rootScope, $ionicPlatform, $cordovaBeacon, $ionicPopup, Beacons) {
   $scope.beacons = {};
 
   $ionicPlatform.ready(function() {
@@ -37,11 +37,11 @@ angular.module('app.controllers.cerca', [])
       $scope.beacons[uniqueBeaconKey].uuid = data[i].uuid;
       $scope.beacons[uniqueBeaconKey].major = data[i].major;
       $scope.beacons[uniqueBeaconKey].minor = data[i].minor;
-      $scope.beacons[uniqueBeaconKey].stato = data[i].stato;
+      $scope.beacons[uniqueBeaconKey].state = data[i].state;
     }
   };
 
-  $scope.aggiungi = function(uuid, major, minor) {
-    Beacons.aggiungi(uuid, major, minor).then(callbackBeacon);
+  $scope.add = function(uuid, major, minor) {
+    Beacons.add(uuid, major, minor).then(callbackBeacon);
   }
 })

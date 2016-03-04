@@ -2,11 +2,11 @@ angular.module('app.services.login',[])
 
 .factory('Login', function($http, MY_SERVER) {
   return {
-    login: function(username, psw) {
+    login: function(username, password) {
     return $http.post(MY_SERVER.get() + '/login',
           {
             username: username,
-            password: psw
+            password: password
         }).then(function(response) {
           return {
             status: response.status,
@@ -21,7 +21,7 @@ angular.module('app.services.login',[])
       return $http.post(MY_SERVER.get() + '/stato_utente',
             {
               username: username,
-              password: psw
+              password: password
           }).then(function(response) {
             return {
               status: response.status,
