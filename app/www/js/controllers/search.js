@@ -3,25 +3,24 @@ angular.module('app.controllers.search', [])
 
 .controller('SearchCtrl', function($scope, $rootScope, $ionicPlatform, $cordovaBeacon, $ionicPopup, Beacons) {
   $scope.beacons = {};
-
   $ionicPlatform.ready(function() {
-      $cordovaBeacon.requestWhenInUseAuthorization();
-      $rootScope.$on("$cordovaBeacon:didRangeBeaconsInRegion", function(event, pluginResult) {
-          var uniqueBeaconKey;
-          for(var i = 0; i < pluginResult.beacons.length; i++) {
-            uniqueBeaconKey = pluginResult.beacons[i].uuid + ":" + pluginResult.beacons[i].major + ":" + pluginResult.beacons[i].minor;
-            if(!$scope.beacons[uniqueBeaconKey]) {
-              $scope.beacons[uniqueBeaconKey] = {};
-            }
-            $scope.beacons[uniqueBeaconKey].uuid = pluginResult.beacons[i].uuid;
-            $scope.beacons[uniqueBeaconKey].major = pluginResult.beacons[i].major;
-            $scope.beacons[uniqueBeaconKey].minor = pluginResult.beacons[i].minor;
-            $scope.beacons[uniqueBeaconKey].proximity = pluginResult.beacons[i].proximity;
-            $scope.beacons[uniqueBeaconKey].accuracy = pluginResult.beacons[i].accuracy;
-          }
-          $scope.$apply();
-      });
-      $cordovaBeacon.startRangingBeaconsInRegion($cordovaBeacon.createBeaconRegion("BlueUp", "ACFD065E-C3C0-11E3-9BBE-1A514932AC01"));
+    $cordovaBeacon.requestWhenInUseAuthorization();
+    $rootScope.$on("$cordovaBeacon:didRangeBeaconsInRegion", function(event, pluginResult) {
+      var uniqueBeaconKey;
+      for(var i = 0; i < pluginResult.beacons.length; i++) {
+        uniqueBeaconKey = pluginResult.beacons[i].uuid + ":" + pluginResult.beacons[i].major + ":" + pluginResult.beacons[i].minor;
+        if(!$scope.beacons[uniqueBeaconKey]) {
+          $scope.beacons[uniqueBeaconKey] = {};
+        }
+        $scope.beacons[uniqueBeaconKey].uuid = pluginResult.beacons[i].uuid;
+        $scope.beacons[uniqueBeaconKey].major = pluginResult.beacons[i].major;
+        $scope.beacons[uniqueBeaconKey].minor = pluginResult.beacons[i].minor;
+        $scope.beacons[uniqueBeaconKey].proximity = pluginResult.beacons[i].proximity;
+        $scope.beacons[uniqueBeaconKey].accuracy = pluginResult.beacons[i].accuracy;
+      }
+      $scope.$apply();
+    });
+    $cordovaBeacon.startRangingBeaconsInRegion($cordovaBeacon.createBeaconRegion("BlueUp", "ACFD065E-C3C0-11E3-9BBE-1A514932AC01"));
   });
 
   $scope.$on('$ionicView.enter',function(){

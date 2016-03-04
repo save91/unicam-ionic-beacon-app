@@ -4,9 +4,9 @@ angular.module('app.controllers.devices', [])
   $scope.devices = [];
   $scope.beacons = [];
   $ionicPlatform.ready(function() {
-  $cordovaBeacon.requestWhenInUseAuthorization();
-  $rootScope.$on("$cordovaBeacon:didRangeBeaconsInRegion", function(event, pluginResult, Devices) {
-    var uniqueBeaconKey;
+    $cordovaBeacon.requestWhenInUseAuthorization();
+    $rootScope.$on("$cordovaBeacon:didRangeBeaconsInRegion", function(event, pluginResult, Devices) {
+      var uniqueBeaconKey;
       for(var i = 0; i < pluginResult.beacons.length; i++) {
         uniqueBeaconKey = pluginResult.beacons[i].major + ":" + pluginResult.beacons[i].minor;
         for(var j = 0; j < $scope.devices.length; j++) {

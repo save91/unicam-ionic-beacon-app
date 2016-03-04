@@ -4,34 +4,34 @@ angular.module('app.services.devices',[])
 
 	var devices = [];
 
-  return {
-  	all: function() {
+	return {
+		all: function() {
 			return $http({
-						method: 'GET',
-						url: MY_SERVER.get() + '/devices_output'
-					}).then(function(response) {
-						return response.data;
-					});
-  	},
+				method: 'GET',
+				url: MY_SERVER.get() + '/devices_output'
+			}).then(function(response) {
+				return response.data;
+			});
+		},
 		comando: function(url) {
 			$http({
-        method: 'GET',
-        url: MY_SERVER.get() + '/' + url
-      }).then(function(response) {
-        console.log("OK");
-      }, function(response) {
-        console.log("ERRORE");
-      });
+				method: 'GET',
+				url: MY_SERVER.get() + '/' + url
+			}).then(function(response) {
+				console.log("OK");
+			}, function(response) {
+				console.log("ERRORE");
+			});
 		},
 		setGPIO: function(id, value) {
-        return $http.post(MY_SERVER.get() + '/gpio_set',
-          {
-            id: id,
-            value: value
-          }
-        ).then(function(response) {
-          return response.data;
-          });
-        }
-  };
+			return $http.post(MY_SERVER.get() + '/gpio_set',
+			{
+				id: id,
+				value: value
+			}
+		).then(function(response) {
+			return response.data;
+		});
+	}
+};
 });
