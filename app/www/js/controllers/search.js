@@ -23,10 +23,7 @@ angular.module('app.controllers.search', [])
     $cordovaBeacon.startRangingBeaconsInRegion($cordovaBeacon.createBeaconRegion("BlueUp", "ACFD065E-C3C0-11E3-9BBE-1A514932AC01"));
   });
 
-  $scope.$on('$ionicView.enter',function(){
-    Beacons.all().then(callbackBeacon);
-  });
-  var callbackBeacon = function(data) {
+  var updateBeacon = function(data) {
     var uniqueBeaconKey;
     for(var i = 0; i < data.length; i++) {
       uniqueBeaconKey = data[i].uuid + ":" + data[i].major + ":" + data[i].minor;
@@ -40,7 +37,22 @@ angular.module('app.controllers.search', [])
     }
   };
 
+  $scope.$on('$ionicView.enter',function(){
+    Beacons.all()
+    .then(function(response) {
+      updateBeacon(response.data);
+    },function(response) {
+      $scope.beacons = {};
+    });
+  });
+
+
   $scope.add = function(uuid, major, minor) {
-    Beacons.add(uuid, major, minor).then(callbackBeacon);
+    Beacons.add(uuid, major, minor)
+      .then(function(response) {
+        updateBeacon(response.data);
+      },function(response) {
+        $scope.beacons = {};
+      });
   }
 })
