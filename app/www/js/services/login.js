@@ -9,27 +9,14 @@ angular.module('app.services.login',[])
         username: username,
         password: password
       }).then(function(response) {
-          deferred.resolve(response.data);
-        },function(response) {
-          deferred.reject(response.data);
-        });
-        return deferred.promise;
-      }/*,
-      stato: function() {
-        return $http.post(MY_SERVER.get() + '/stato_utente',
-        {
-          username: username,
-          password: password
-        }).then(function(response) {
-          return {
-            status: response.status,
-            utente: response.data};
-          },function(response) {
-            return {
-              status: response.status
-            };
-          });
-        }*/
-
-      };
-    });
+        deferred.resolve(response.data);
+      },function(response) {
+        deferred.reject(response.data);
+      });
+      return deferred.promise;
+    },
+    getUser: function(username) {
+      return $http.get(MY_SERVER.get() + '/user/' + username);
+    }
+  };
+});

@@ -13,7 +13,7 @@ var app = angular.module('app', [
   'app.services.ibeacons',
   'app.services.settings',
   'app.services.login'])
-  .run(function($ionicPlatform) {
+  .run(function($ionicPlatform, $http) {
     $ionicPlatform.ready(function() {
       if(window.cordova && window.cordova.plugins.Keyboard) {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -28,11 +28,11 @@ var app = angular.module('app', [
       if(window.StatusBar) {
         StatusBar.styleDefault();
       }
-
+      $http.defaults.headers.common.Authorization = window.localStorage['Authorization'] || "";
     });
   })
   .constant("MY_SERVER", {
-    "url": window.localStorage['server_url'] ? window.localStorage['server_url'].split(':')[0] : "192.168.1.149",
+    "url": window.localStorage['server_url'] ? window.localStorage['server_url'].split(':')[0] : "192.168.1.104",
     "port": window.localStorage['server_url'] ? window.localStorage['server_url'].split(':')[1] : "8000",
     "get": function() { return "http://" + this.url + ":" + this.port }
   })

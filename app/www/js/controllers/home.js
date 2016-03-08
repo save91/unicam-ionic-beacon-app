@@ -1,37 +1,23 @@
 angular.module('app.controllers.home', [])
 
-.controller('HomeCtrl', function($scope,MY_SERVER, $ionicPopup, $ionicModal, Login, Signup, Settings, $ionicPlatform, $cordovaCamera, $http) {
+.controller('HomeCtrl', function($scope, $location, MY_SERVER, $ionicPopup, $ionicModal, Login, Signup, Settings, $ionicPlatform, $cordovaCamera, $http) {
   $scope.utente = {};
 
   $scope.logout = function() {
     $http.defaults.headers.common.Authorization = "";
-    window.localStorage['user'] = '';
-    window.localStorage['block'] = '';
-    window.localStorage['Authorization'] = '';
-    $scope.utente.block = false;
-    $scope.utente.name = "";
+    window.localStorage.removeItem('user');
+    window.localStorage.removeItem('Authorization');
+    $scope.user = null;
   }
 
-
-  //Test promise
-  $scope.test = function() {
-    $scope.message = "Ricerca";
-    Settings.hello(MY_SERVER.url).then(function(greeting) {
-      $ionicPopup.alert({
-        title: 'Success',
-        template: 'Success: ' + greeting
-      });
-    }, function(reason) {
-      $ionicPopup.alert({
-        title: 'Failed',
-        template: 'Failed: ' + reason
-      });
-    })
-    .finally(function() {
-      $scope.message = "";
-    });
+  $scope.check_connection = function() {
+    Settings.hello(MY_SERVER.url, MY_SERVER.port)
+      .then(function(response) {
+        $scope.connection = true;
+      },function(response) {
+        $scope.connection = false;
+      })
   }
-  //End test promise
 
   //Start ip
   $scope.ip = "";
@@ -64,10 +50,26 @@ angular.module('app.controllers.home', [])
   //End
 
   $scope.$on('$ionicView.enter',function(){
-    $scope.utente.name = window.localStorage['user'] || "";
-    $scope.utente.block = window.localStorage['block'] || false;
-    $http.defaults.headers.common.Authorization = window.localStorage['Authorization'] || "";
+    $scope.connection = false;
+    $scope.check_connection();
+    if(window.localStorage['user']) {
+      $scope.user = {};
+      $scope.user = JSON.parse(window.localStorage['user']);
+    } else {
+      $scope.user = null;
+    }
   });
+
+  $scope.check = function() {
+    Login.getUser($scope.user.username)
+      .then(function(response) {
+        $scope.user = response.data;
+        window.localStorage['user'] = JSON.stringify($scope.user);
+      },function(response) {
+        $scope.user = null;
+        window.localStorage.removeItem('user');
+      })
+  }
 
   // Form data for the login modal
   $scope.loginData = {};
@@ -139,7 +141,8 @@ angular.module('app.controllers.home', [])
     Login.login($scope.loginData.username, $scope.loginData.password)
     .then(function(user) {
       window.localStorage['Authorization'] = 'Basic '+ window.btoa($scope.loginData.username +':'+$scope.loginData.password);
-      window.localStorage['user'] = user;
+      $scope.user = user;
+      window.localStorage['user'] = JSON.stringify($scope.user);
       $http.defaults.headers.common.Authorization = window.localStorage['Authorization'];
       $scope.closeLogin();
     }, function(error) {
@@ -148,23 +151,6 @@ angular.module('app.controllers.home', [])
         template: error
       });
     });
-  };
-
-  var callbackLogin = function(response) {
-    $scope.block = false;
-    console.log(response);
-    if(risposta.status === 200) {
-      window.localStorage['Authorization'] = 'Basic '+ window.btoa($scope.loginData.username +':'+$scope.loginData.password);
-      window.localStorage['user'] = risposta.user.name;
-      window.localStorage['block'] = risposta.user.block;
-      $http.defaults.headers.common.Authorization = window.localStorage['Authorization'];
-      $scope.closeLogin();
-    } else {
-      $ionicPopup.alert({
-        title: "Errore",
-        template: "Controllare le credenziali"
-      });
-    }
   };
 
   var title = "Errore!";
@@ -220,4 +206,5 @@ angular.module('app.controllers.home', [])
       });
     }
   };
+  $scope.check_connection();
 })

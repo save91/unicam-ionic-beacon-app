@@ -3,24 +3,33 @@
   <ion-content>
     <div class="card">
       <div class="item item-divider">
-        Benvenuto!
+        Benvenuto<span data-ng-if="user"> {{user.firstname}}</span>!
       </div>
       <div class="item item-text-wrap">
         Quest'app ti permette di controllare il tuo ufficio in modo semplice e veloce!!!
       </div>
+      <div data-ng-if="user.block" class="item item-text-wrap">
+        Siamo spiacenti, il tuo account risulta bloccato. Verifca se è stato
+        attivato<br />
+        <button data-ng-click="check()" class="button button-outline button-positive">
+          Verifica
+        </button>
+      </div>
+      <div data-ng-if="user && !user.block" class="item item-text-wrap">
+        Seleziona Cerca iBeacon per vedere i beacon registrati e segnalarne di nuovi
+        all'amministratore
+      </div>
+      <div data-ng-if="!connection" class="item item-text-wrap">
+        ATTENZIONE: non sei connesso con il server, vai su impostazioni
+        per modificare l'indirizzo del server <br />
+        <button data-ng-click="check_connection()" class="button button-outline button-positive">
+          Verifica connessione
+        </button>
+      </div>
+      <div data-ng-if="user && !user.block" class="item item-text-wrap">
+        Seleziona Elenco Dispositivi per accedere e telecomandare i tuoi device!
+      </div>
     </div>
-    <span>Stato: {{message}}</span>
-    <button class="button button-block button-outline button-positive" data-ng-click="test()">
-      Verifica connessione
-    </button>
-    <span>IP: {{ip}}</span>
-    <button class="button button-block button-outline button-positive" data-ng-click="getIp()">
-      Lettura IP
-    </button>
-    <span ng-repeat="server in servers">IP Server: {{server.ip}}<br></span>
-    <button class="button button-block button-outline button-positive" data-ng-click="getServers()">
-      Ricerca Server
-    </button>
   </ion-content>
   <!-- Fine contenuto della pagina principale-->
 </ion-view>

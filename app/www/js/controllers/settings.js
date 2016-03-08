@@ -9,6 +9,6 @@ angular.module('app.controllers.settings', [])
   $scope.salva = function() {
     MY_SERVER.url = $scope.settings.url;
     MY_SERVER.port = $scope.settings.port;
-    window.localStorage['server_url'] = $scope.settings.url + ':' + $scope.settings.port
+    window.localStorage['server'] = $scope.settings.url + ':' + $scope.settings.port
   };
 })
