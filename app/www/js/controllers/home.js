@@ -1,7 +1,7 @@
 angular.module('app.controllers.home', [])
 
 .controller('HomeCtrl', function($scope, $location, MY_SERVER, $ionicPopup, $ionicModal, Login, Signup, Settings, $ionicPlatform, $cordovaCamera, $http) {
-  $scope.utente = {};
+  $scope.user = {};
 
   $scope.logout = function() {
     $http.defaults.headers.common.Authorization = "";
@@ -76,6 +76,11 @@ angular.module('app.controllers.home', [])
 
   // Form data for the login modal
   $scope.signupData = {
+    username: "",
+    firstname: "",
+    lastname: "",
+    password: "",
+    check_password: "",
     image: {src: "img/account.jpg"}
   };
 
@@ -172,23 +177,29 @@ angular.module('app.controllers.home', [])
   }
 
   $scope.checkUsername = function() {
-    Signup.checkUsername($scope.signupData.username).then(callback);
+    Signup.checkUsername($scope.signupData.username).then(
+      function(response) {
+        ok = true;
+      }, function(response) {
+        ok = false;
+      }
+    );
   }
 
   $scope.doSignup = function () {
-    if($scope.signupData.username.trim() === "" || $scope.signupData.nome.trim() === "" || $scope.signupData.cognome.trim() === "" || $scope.signupData.password.trim() === "") {
+    if($scope.signupData.username.trim() === "" || $scope.signupData.firstname.trim() === "" || $scope.signupData.lastname.trim() === "" || $scope.signupData.password.trim() === "") {
       template = "Compila tutti i campi";
       $ionicPopup.alert({
         title: title,
         template: template
       });
-    }else if(valido === false) {
+    }else if(ok === false) {
       template = "Username già utilizzato";
       $ionicPopup.alert({
         title: title,
         template: template
       });
-    }else if ($scope.signupData.password !== $scope.signupData.conferma_password) {
+    }else if ($scope.signupData.password !== $scope.signupData.check_password) {
       template = "Le password non coincidono";
       $ionicPopup.alert({
         title: title,
@@ -201,10 +212,21 @@ angular.module('app.controllers.home', [])
       });
       conferma.then(function(res) {
         if(res) {
-          Signup.signup($scope.signupData).then(callbackRegistrazione);
+          Signup.signup($scope.signupData).then(
+            function(response) {
+              $scope.closeSignup();
+              $scope.login();
+            }, function(response) {
+              $ionicPopup.alert({
+                title: 'Errore',
+                template: 'Qualcosa è andato storto. Riprova più tardi!'
+              });
+            }
+          );
         }
       });
     }
   };
+
   $scope.check_connection();
 })

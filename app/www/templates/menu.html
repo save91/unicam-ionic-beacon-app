@@ -19,10 +19,10 @@
         <ion-item class="item item-icon-left" menu-close href="#/app/">
           <i class="icon ion-home"></i>Home
         </ion-item>
-        <ion-item data-ng-if="user && connection" class="item item-icon-left" menu-close href="#/app/search_ibeacons">
+        <ion-item data-ng-if="user && connection && !user.block" class="item item-icon-left" menu-close href="#/app/search_ibeacons">
           <i class="icon ion-location"></i>Cerca iBeacons
         </ion-item>
-        <ion-item data-ng-if="user && connection" class="item item-icon-left" menu-close href="#/app/devices">
+        <ion-item data-ng-if="user && connection && !user.block" class="item item-icon-left" menu-close href="#/app/devices">
           <i class="icon ion-archive"></i>Elenco dispositivi
         </ion-item>
         <ion-item class="item item-icon-left" menu-close href="#/app/settings">
