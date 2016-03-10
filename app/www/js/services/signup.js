@@ -11,8 +11,9 @@ angular.module('app.services.signup',[])
     signup: function(user) {
       return $http.post(MY_SERVER.get() + '/user',
       {
+        photo: user.image.src,
         username: user.username,
-        name: user.name,
+        firstname: user.firstname,
         lastname: user.lastname,
         password: user.password,
       }

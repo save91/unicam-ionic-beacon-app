@@ -5,6 +5,11 @@
       <div class="item item-divider">
         Benvenuto<span data-ng-if="user"> {{user.firstname}}</span>!
       </div>
+      <div data-ng-if="user" class="item item-avatar">
+        <img src="{{user.photo}}">
+        <h2>{{user.username}}</h2>
+        <p>{{user.firstname}} {{user.lastname}}</p>
+      </div>
       <div class="item item-text-wrap">
         Quest'app ti permette di controllare il tuo ufficio in modo semplice e veloce!!!
       </div>

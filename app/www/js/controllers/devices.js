@@ -19,7 +19,7 @@ angular.module('app.controllers.devices', [])
                 $scope.on($scope.devices[j]);
               }
             } else {
-              $scope.devices[j].disabilitato = true;
+              $scope.devices[j].disable = true;
               if($scope.devices[j].automatic) {
                 $scope.off($scope.devices[j]);
               }
@@ -35,6 +35,13 @@ angular.module('app.controllers.devices', [])
   var updateDevice = function() {
     Devices.all().then(function(response) {
       $scope.devices = response.data;
+      for(var i = 0; i<$scope.devices.length; i++) {
+        if($scope.devices[i].uuid === 0) {
+          $scope.devices[i].disable = false;
+        } else {
+          $scope.devices[i].disable = true;
+        }
+      }
     }, function(response) {
       $ionicPopup.alert({
         title: 'Errore',

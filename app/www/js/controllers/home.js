@@ -215,7 +215,18 @@ angular.module('app.controllers.home', [])
           Signup.signup($scope.signupData).then(
             function(response) {
               $scope.closeSignup();
-              $scope.login();
+              $scope.signupData = {
+                username: "",
+                firstname: "",
+                lastname: "",
+                password: "",
+                check_password: "",
+                image: {src: "img/account.jpg"}
+              };
+              window.localStorage['Authorization'] = 'Basic '+ window.btoa($scope.loginData.username +':'+$scope.loginData.password);
+              $scope.user = response.data;
+              window.localStorage['user'] = JSON.stringify($scope.user);
+              $http.defaults.headers.common.Authorization = window.localStorage['Authorization'];
             }, function(response) {
               $ionicPopup.alert({
                 title: 'Errore',
