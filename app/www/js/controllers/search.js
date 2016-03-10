@@ -37,20 +37,23 @@ angular.module('app.controllers.search', [])
     }
   };
 
-  $scope.$on('$ionicView.enter',function(){
+  var getBeacons = function() {
     Beacons.all()
     .then(function(response) {
       updateBeacon(response.data);
     },function(response) {
       $scope.beacons = {};
     });
-  });
+  }
 
+  $scope.$on('$ionicView.enter',function(){
+    getBeacons();
+  });
 
   $scope.add = function(uuid, major, minor) {
     Beacons.add(uuid, major, minor)
       .then(function(response) {
-        updateBeacon(response.data);
+        getBeacons();
       },function(response) {
         $scope.beacons = {};
       });
