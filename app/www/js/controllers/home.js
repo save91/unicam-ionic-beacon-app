@@ -1,13 +1,29 @@
 angular.module('app.controllers.home', [])
 
 .controller('HomeCtrl', function($scope, $location, MY_SERVER, $ionicPopup, $ionicModal, Login, Signup, Settings, $ionicPlatform, $cordovaCamera, $http) {
-  $scope.user = {};
+  $scope.user = {id: 0};
 
-  $scope.logout = function() {
+  var logout = function() {
+    $scope.user = {id:0};
     $http.defaults.headers.common.Authorization = "";
     window.localStorage.removeItem('user');
     window.localStorage.removeItem('Authorization');
-    $scope.user = null;
+  }
+
+  var showConfirm = function() {
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Logout',
+      template: 'Sei sicuro di volerti disconnettere?'
+    });
+    return confirmPopup;
+  };
+
+  $scope.logout = function() {
+    showConfirm().then(function(res) {
+      if(res) {
+        logout();
+      }
+    });
   }
 
   $scope.check_connection = function() {
@@ -52,11 +68,12 @@ angular.module('app.controllers.home', [])
   $scope.$on('$ionicView.enter',function(){
     $scope.connection = false;
     $scope.check_connection();
+    $scope.user = {
+      id: 0
+    };
+
     if(window.localStorage['user']) {
-      $scope.user = {};
       $scope.user = JSON.parse(window.localStorage['user']);
-    } else {
-      $scope.user = null;
     }
   });
 

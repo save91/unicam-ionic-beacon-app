@@ -3,9 +3,9 @@
   <ion-content>
     <div class="card">
       <div class="item item-divider">
-        Benvenuto<span data-ng-if="user"> {{user.firstname}}</span>!
+        Benvenuto<span data-ng-if="user.id !== 0"> {{user.firstname}}</span>!
       </div>
-      <div data-ng-if="user" class="item item-avatar">
+      <div data-ng-if="user.id !== 0" class="item item-avatar">
         <img src="{{user.photo}}">
         <h2>{{user.username}}</h2>
         <p>{{user.firstname}} {{user.lastname}}</p>
@@ -20,7 +20,7 @@
           Verifica
         </button>
       </div>
-      <div data-ng-if="user && !user.block" class="item item-text-wrap">
+      <div data-ng-if="user.id !== 0 && !user.block" class="item item-text-wrap">
         Seleziona Cerca iBeacon per vedere i beacon registrati e segnalarne di nuovi
         all'amministratore
       </div>
@@ -31,7 +31,7 @@
           Verifica connessione
         </button>
       </div>
-      <div data-ng-if="user && !user.block" class="item item-text-wrap">
+      <div data-ng-if="user.id !== 0 && !user.block" class="item item-text-wrap">
         Seleziona Elenco Dispositivi per accedere e telecomandare i tuoi device!
       </div>
     </div>

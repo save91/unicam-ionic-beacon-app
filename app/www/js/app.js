@@ -32,7 +32,7 @@ var app = angular.module('app', [
     });
   })
   .constant("MY_SERVER", {
-    "url": window.localStorage['server_url'] ? window.localStorage['server_url'].split(':')[0] : "192.168.1.104",
+    "url": window.localStorage['server_url'] ? window.localStorage['server_url'].split(':')[0] : "192.168.1.109",
     "port": window.localStorage['server_url'] ? window.localStorage['server_url'].split(':')[1] : "8000",
     "get": function() { return "http://" + this.url + ":" + this.port }
   })

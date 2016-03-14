@@ -19,22 +19,22 @@
         <ion-item class="item item-icon-left" menu-close href="#/app/">
           <i class="icon ion-home"></i>Home
         </ion-item>
-        <ion-item data-ng-if="user && connection && !user.block" class="item item-icon-left" menu-close href="#/app/search_ibeacons">
+        <ion-item data-ng-if="user.id !== 0 && connection && !user.block" class="item item-icon-left" menu-close href="#/app/search_ibeacons">
           <i class="icon ion-location"></i>Cerca iBeacons
         </ion-item>
-        <ion-item data-ng-if="user && connection && !user.block" class="item item-icon-left" menu-close href="#/app/devices">
+        <ion-item data-ng-if="user.id !== 0 && connection && !user.block" class="item item-icon-left" menu-close href="#/app/devices">
           <i class="icon ion-archive"></i>Elenco dispositivi
         </ion-item>
         <ion-item class="item item-icon-left" menu-close href="#/app/settings">
           <i class="icon ion-settings"></i>Impostazioni
         </ion-item>
-        <ion-item data-ng-if="!user && connection" class="item item-icon-left" menu-close ng-click="signup()">
+        <ion-item data-ng-if="user.id === 0 && connection" class="item item-icon-left" data-ng-click="signup()" menu-close>
           <i class="icon ion-person-add"></i>Registrati
         </ion-item>
-        <ion-item data-ng-if="!user && connection" class="item item-icon-left" menu-close ng-click="login()">
+        <ion-item data-ng-if="user.id === 0 && connection" class="item item-icon-left" data-ng-click="login()" menu-close>
           <i class="icon ion-log-in"></i>Login
         </ion-item>
-        <ion-item data-ng-if="user && connection" class="item item-icon-left" menu-close ng-click="logout()">
+        <ion-item data-ng-if="user.id !== 0 && connection" class="item item-icon-left" data-ng-click="logout()" menu-close>
           <i class="icon ion-log-out"></i>Logout
         </ion-item>
       </ion-list>

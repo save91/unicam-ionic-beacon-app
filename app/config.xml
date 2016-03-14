@@ -2,11 +2,11 @@
 <widget id="net.extrategy.beacondomotica" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Proximity Solutions</name>
   <description>
-        An app to controls your home with iBeacons.
-    </description>
+    An app to controls your home with iBeacons.
+  </description>
   <author email="saverio.tosi@studenti.unicam.it" href="http://example.com.com/">
-      Saverio Tosi
-    </author>
+    Saverio Tosi
+  </author>
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
