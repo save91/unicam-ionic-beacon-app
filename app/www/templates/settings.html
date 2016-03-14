@@ -15,10 +15,18 @@
       </label>
     </div>
     <label class="item">
-      <button class="button button-block button-positive" ng-click="search()">Salva</button>
+      <button class="button button-block button-positive" ng-click="search()">Ricerca server</button>
     </label>
-    <div class="list">
-      
+    <div class="list" data-ng-if="servers.length">
+      <div data-ng-repeat="server in servers" class="item item-thumbnail-left item-button-right">
+        <img data-ng-src="img/raspberry.jpg">
+        <h2>{{server.name}}</h2>
+        <p>{{server.ip}}</p>
+        <p>{{server.port}}</p>
+        <button class="button button-positive" data-ng-click="connect(server);">
+          Connettiti
+        </button>
+      </div>
     </div>
   </ion-content>
   <!-- Fine contenuto della pagina principale-->
