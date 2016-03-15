@@ -2,8 +2,9 @@
 
 var app = angular.module('app', [
   'ionic',
-  'app.controllers.home',
   'ngCordova',
+  'app.controllers.home',
+  'app.controllers.menu',
   'app.controllers.devices',
   'app.controllers.search',
   'app.controllers.settings',
@@ -13,7 +14,8 @@ var app = angular.module('app', [
   'app.services.ibeacons',
   'app.services.settings',
   'app.services.login'])
-  .run(function($ionicPlatform, $http) {
+  .run(function($ionicPlatform, $http, Login) {
+
     $ionicPlatform.ready(function() {
       if(window.cordova && window.cordova.plugins.Keyboard) {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -29,10 +31,19 @@ var app = angular.module('app', [
         StatusBar.styleDefault();
       }
       $http.defaults.headers.common.Authorization = window.localStorage['Authorization'] || "";
+      if(window.localStorage["user"]) {
+        var user = JSON.parse(window.localStorage["user"]);
+        Login.user.username = user.username,
+        Login.user.firstname = user.firstname,
+        Login.user.lastname = user.lastname,
+        Login.user.permission = user.permission,
+        Login.user.photo = user.photo,
+        Login.user.block = user.block
+      }
     });
   })
   .constant("MY_SERVER", {
-    "url": window.localStorage['server_url'] ? window.localStorage['server_url'].split(':')[0] : "192.168.1.109",
-    "port": window.localStorage['server_url'] ? window.localStorage['server_url'].split(':')[1] : "8000",
+    "url": window.localStorage['server'] ? window.localStorage['server'].split(':')[0] : "192.168.1.109",
+    "port": window.localStorage['server'] ? window.localStorage['server'].split(':')[1] : "8000",
     "get": function() { return "http://" + this.url + ":" + this.port }
   })

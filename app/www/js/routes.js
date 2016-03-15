@@ -4,13 +4,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'HomeCtrl'
+    controller: 'MenuCtrl'
   });
   $stateProvider.state('app.home', {
     url: '/home',
     views: {
       'menuContent': {
-        templateUrl: 'templates/home.html'
+        templateUrl: 'templates/home.html',
+        controller: 'HomeCtrl'
       }
     }
   });
