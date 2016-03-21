@@ -8,9 +8,9 @@ angular.module('app.controllers.devices', [])
     $rootScope.$on("$cordovaBeacon:didRangeBeaconsInRegion", function(event, pluginResult, Devices) {
       var uniqueBeaconKey;
       for(var i = 0; i < pluginResult.beacons.length; i++) {
-        uniqueBeaconKey = pluginResult.beacons[i].major + ":" + pluginResult.beacons[i].minor;
+        uniqueBeaconKey = pluginResult.beacons[i].uuid + ":" + pluginResult.beacons[i].major + ":" + pluginResult.beacons[i].minor;
         for(var j = 0; j < $scope.devices.length; j++) {
-          if(uniqueBeaconKey === $scope.devices[j].major + ":" + $scope.devices[j].minor) {
+          if(uniqueBeaconKey === $scope.devices[j].uuid + ":" + $scope.devices[j].major + ":" + $scope.devices[j].minor) {
             $scope.devices[j].proximity = pluginResult.beacons[i].proximity;
             $scope.devices[j].accuracy = pluginResult.beacons[i].accuracy;
             if($scope.devices[j].proximity === "ProximityImmediate") {

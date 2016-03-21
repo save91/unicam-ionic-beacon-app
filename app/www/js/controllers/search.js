@@ -1,11 +1,18 @@
 
 angular.module('app.controllers.search', [])
 
-.controller('SearchCtrl', function($scope, $rootScope, $ionicPlatform, $cordovaBeacon, $ionicPopup, Beacons) {
+.controller('SearchCtrl', function($scope, $rootScope, $ionicPlatform, $ionicLoading, $ionicPopup, Beacons) {
   $scope.beacons = {};
+  var show = function(message) {
+    $ionicLoading.show({
+      template: message
+    });
+  };
+  var hide = function(){
+    $ionicLoading.hide();
+  };
   $ionicPlatform.ready(function() {
-    $cordovaBeacon.requestWhenInUseAuthorization();
-    $rootScope.$on("$cordovaBeacon:didRangeBeaconsInRegion", function(event, pluginResult) {
+    Beacons.setCallbackDidRangeBeaconsInRegion(function(pluginResult) {
       var uniqueBeaconKey;
       for(var i = 0; i < pluginResult.beacons.length; i++) {
         uniqueBeaconKey = pluginResult.beacons[i].uuid + ":" + pluginResult.beacons[i].major + ":" + pluginResult.beacons[i].minor;
@@ -20,11 +27,23 @@ angular.module('app.controllers.search', [])
       }
       $scope.$apply();
     });
-    $cordovaBeacon.startRangingBeaconsInRegion($cordovaBeacon.createBeaconRegion("BlueUp", "ACFD065E-C3C0-11E3-9BBE-1A514932AC01"));
+
+
+    $scope.$on('$ionicView.enter',function(){
+      getBeacons();
+      console.log("Enter");
+      Beacons.startRangingBeaconsInRegion(0);
+    });
+
+    $scope.$on('$stateChangeStart',function(){
+      Beacons.stopRangingBeaconsInRegion(0);
+    });
+
   });
 
   var updateBeacon = function(data) {
     var uniqueBeaconKey;
+    $scope.beacons = {};
     for(var i = 0; i < data.length; i++) {
       uniqueBeaconKey = data[i].uuid + ":" + data[i].major + ":" + data[i].minor;
       if(!$scope.beacons[uniqueBeaconKey]) {
@@ -43,19 +62,22 @@ angular.module('app.controllers.search', [])
       updateBeacon(response.data);
     },function(response) {
       $scope.beacons = {};
+    }).finally(function() {
+      hide();
+      $ionicHistory.nextViewOptions({
+        disableBack: true
+      });
+      $state.go("app.home");
     });
   }
 
-  $scope.$on('$ionicView.enter',function(){
-    getBeacons();
-  });
 
   $scope.add = function(uuid, major, minor) {
     Beacons.add(uuid, major, minor)
-      .then(function(response) {
-        getBeacons();
-      },function(response) {
-        $scope.beacons = {};
-      });
+    .then(function(response) {
+      getBeacons();
+    },function(response) {
+      $scope.beacons = {};
+    });
   }
 })

@@ -1,6 +1,6 @@
 angular.module('app.controllers.menu', [])
 
-.controller('MenuCtrl', function($scope, $location, $rootScope, $ionicLoading, $cordovaToast, MY_SERVER, $ionicPopup, $ionicModal, Login, Signup, Settings, $ionicPlatform, $cordovaCamera, $http) {
+.controller('MenuCtrl', function($scope, $state, $rootScope, $ionicHistory, $ionicLoading, $cordovaToast, MY_SERVER, $ionicPopup, $ionicModal, Login, Signup, Settings, $ionicPlatform, $cordovaCamera, $http) {
   $scope.user = Login.user;
   $scope.connection = Login.connection;
 
@@ -26,6 +26,10 @@ angular.module('app.controllers.menu', [])
     showConfirm().then(function(res) {
       if(res) {
         Login.logout();
+        $ionicHistory.nextViewOptions({
+          disableBack: true
+        });
+        $state.go("app.home");
       }
     });
   };
@@ -102,14 +106,17 @@ angular.module('app.controllers.menu', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
+    show('Controllo credenziali...');
     Login.login($scope.loginData.username, $scope.loginData.password)
     .then(function(user) {
       $scope.closeLogin();
     }, function(error) {
       $ionicPopup.alert({
         title: 'Errore',
-        template: error
+        template: 'Username o password errati'
       });
+    }).finally(function() {
+      hide();
     });
   };
 
@@ -124,6 +131,7 @@ angular.module('app.controllers.menu', [])
   }
 
   $scope.doSignup = function () {
+    var title = "Errore";
     if($scope.signupData.username.trim() === "" || $scope.signupData.firstname.trim() === "" || $scope.signupData.lastname.trim() === "" || $scope.signupData.password.trim() === "") {
       template = "Compila tutti i campi";
       $ionicPopup.alert({
@@ -151,19 +159,24 @@ angular.module('app.controllers.menu', [])
         if(res) {
           Signup.signup($scope.signupData).then(
             function(response) {
-              $scope.closeSignup();
+              window.localStorage['Authorization'] = 'Basic '+ window.btoa($scope.signupData.username +':'+$scope.signupData.password);
+              $scope.user.username = response.data.username;
+              $scope.user.firstname = response.data.firstname;
+              $scope.user.lastname = response.data.lastname;
+              $scope.user.permission = response.data.permission;
+              $scope.user.photo = response.data.photo;
+              $scope.user.block = response.data.block;
+              window.localStorage['user'] = JSON.stringify($scope.user);
               $scope.signupData = {
                 username: "",
                 firstname: "",
-                lastname: "",
+              lastname: "",
                 password: "",
                 check_password: "",
                 image: {src: "img/account.jpg"}
               };
-              window.localStorage['Authorization'] = 'Basic '+ window.btoa($scope.loginData.username +':'+$scope.loginData.password);
-              $scope.user = response.data;
-              window.localStorage['user'] = JSON.stringify($scope.user);
               $http.defaults.headers.common.Authorization = window.localStorage['Authorization'];
+              $scope.closeSignup();
             }, function(response) {
               $ionicPopup.alert({
                 title: 'Errore',

@@ -14,9 +14,11 @@ var app = angular.module('app', [
   'app.services.ibeacons',
   'app.services.settings',
   'app.services.login'])
-  .run(function($ionicPlatform, $http, Login) {
+  .run(function($ionicPlatform, $http, Login, $ionicHistory) {
 
     $ionicPlatform.ready(function() {
+    
+
       if(window.cordova && window.cordova.plugins.Keyboard) {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)

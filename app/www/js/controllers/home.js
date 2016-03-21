@@ -1,6 +1,6 @@
 angular.module('app.controllers.home', [])
 
-.controller('HomeCtrl', function($scope, $rootScope, $location, $ionicLoading, $cordovaToast, MY_SERVER, $ionicPopup, $ionicModal, Login, Signup, Settings, $ionicPlatform, $cordovaCamera, $http) {
+.controller('HomeCtrl', function($scope, $cordovaToast, $ionicLoading, $location, $ionicLoading, $cordovaToast, MY_SERVER, $ionicPopup, $ionicModal, Login, Signup, Settings, $ionicPlatform, $cordovaCamera, $http) {
   $scope.user = Login.user;
   $scope.connection = Login.connection;
   var show = function(message) {
@@ -26,27 +26,22 @@ angular.module('app.controllers.home', [])
       hide();
       $cordovaToast.showShortBottom(message);
     });
-  }
+  };
 
-  $scope.getServers = function() {
-    var count = 0;
-    $scope.servers = [];
-    for(var i = 1; i < 255; i++) {
-      Settings.hello("192.168.1." + i).then(function(resIp) {
-        $scope.servers.push({ip: resIp});
-        $scope.$apply();
-      }, function(resIp) {
-        console.log("IP " + resIp);
-      })
-      .finally(function() {
-        count++;
-      });
-    }
-  }
-  //End
+  $scope.check = function() {
+    show('Verifica...');
+    Login.getUser($scope.user.username).then(
+      function() {
+        $cordovaToast.showShortBottom("Account attivato");
+      },function() {
+        $cordovaToast.showShortBottom("Account non attivo");
+      }
+    ).finally(function() {
+      hide();
+    });
+  };
 
   $scope.$on('$ionicView.enter',function(){
     $scope.check_connection();
   });
-
 })
