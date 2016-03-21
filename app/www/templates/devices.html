@@ -7,18 +7,19 @@
           Nessun dispositivo trovato.
         </div>
       </div>
-      <div collection-repeat="device in devices" class="item item-thumbnail-left item-toggle">
+      <div data-ng-repeat="device in devices" class="item item-thumbnail-left item-toggle item-button-right">
         <img ng-src="img/ionic.png">
         <h2>{{device.name}}</h2>
         <p>{{device.description}}</p>
         <p ng-if="device.uuid !== 0">Proximity: {{device.proximity}}</p>
         <p ng-if="device.uuid !== 0">Distanza: {{device.accuracy}}</p>
-        <label ng-if="device.uuid === 0 || !device.automatic" class="toggle toggle-assertive">
+        <label ng-if="(device.uuid === 0 || !device.automatic) && device.type === 'Lampada'" class="toggle toggle-assertive">
           <input type="checkbox" ng-disabled="device.disable" ng-model="device.state" ng-change="change_state(device)">
           <div class="track">
             <div class="handle"></div>
           </div>
         </label>
+        <input class="button button-positive" ng-if="(device.uuid === 0 || !device.automatic) && device.type === 'Apriporta'" type="button" ng-disabled="device.disable" ng-model="device.state" ng-click="open(device)" value="Apri">
       </div>
     </div>
     <button on-tap="update()" class="button button-block button-positive">Aggiorna</button>

@@ -10,23 +10,9 @@ angular.module('app.services.devices',[])
 				method: 'GET',
 				url: MY_SERVER.get() + '/device/output'
 			});
-		}/*,
-		comando: function(url) {
-			$http({
-				method: 'GET',
-				url: MY_SERVER.get() + '/' + url
-			}).then(function(response) {
-				console.log("OK");
-			}, function(response) {
-				console.log("ERRORE");
-			});
-		}*/,
-		setGPIO: function(id, value) {
-			return $http.put(MY_SERVER.get() + '/gpio/' + id + '/set',
-			{
-				value: value
-			}
-		);
+		},
+		action: function(id, value) {
+			return $http.put(MY_SERVER.get() + '/device/' + id + '/' + value);
 	}
 };
 });

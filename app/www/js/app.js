@@ -14,10 +14,10 @@ var app = angular.module('app', [
   'app.services.ibeacons',
   'app.services.settings',
   'app.services.login'])
-  .run(function($ionicPlatform, $http, Login, $ionicHistory) {
+  .run(function($ionicPlatform, $http, Login, $ionicHistory, $cordovaBeacon) {
 
     $ionicPlatform.ready(function() {
-    
+
 
       if(window.cordova && window.cordova.plugins.Keyboard) {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -32,6 +32,7 @@ var app = angular.module('app', [
       if(window.StatusBar) {
         StatusBar.styleDefault();
       }
+      $cordovaBeacon.requestWhenInUseAuthorization();
       $http.defaults.headers.common.Authorization = window.localStorage['Authorization'] || "";
       if(window.localStorage["user"]) {
         var user = JSON.parse(window.localStorage["user"]);

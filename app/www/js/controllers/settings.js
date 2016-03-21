@@ -46,49 +46,48 @@ angular.module('app.controllers.settings', [])
       max: 200,
       servers: 0
     };
-    //TODO: Leggere subnet mask e IP e agir
-    /*Start ip
-    $scope.ip = "";
-    $scope.getIp = function() {
-      networkinterface.getIPAddress(function (readIp) {
-      $scope.ip = readIp;
-      $scope.$apply();
-    });
-  }
-*/
-$scope.servers = [];
-show("Ricerca server...");
-for(var i = scan.init; i < scan.max; i++) {
-  var app = i;
-  Settings.hello("192.168.1." + i, "8000").then(function(res) {
-    $scope.servers.push({
-      ip: res.ip,
-      port: res.port,
-      name: res.name,
-      version: res.version
-    });
-    scan.servers++;
-  }, function(res) {
-    console.log(res);
-  })
-  .finally(function() {
-    scan.count++;
-    if(scan.count >= (scan.max - scan.init)) {
-      hide();
-      var message = "Nessun server trovato";
-      if(scan.servers === 1) {
-        message = "Trovato un server";
-      } else if(scan.servers > 1){
-        message = "Trovati " + scan.servers + " server";
+    networkinterface.getIPAddress(function (readIp) {
+      var ip = readIp.split('.');
+      debugger;
+      $scope.servers = [];
+      show("Ricerca server...");
+      for(var i = scan.init; i < scan.max; i++) {
+        var app = i;
+        Settings.hello(ip[0] + '.' + ip[1] + '.' + ip[2] + '.' + i, "8000").then(function(res) {
+          $scope.servers.push({
+            ip: res.ip,
+            port: res.port,
+            name: res.name,
+            version: res.version
+          });
+          scan.servers++;
+        }, function(res) {
+          console.log(res);
+        })
+        .finally(function() {
+          scan.count++;
+          if(scan.count >= (scan.max - scan.init)) {
+            hide();
+            var message = "Nessun server trovato";
+            if(scan.servers === 1) {
+              message = "Trovato un server";
+            } else if(scan.servers > 1){
+              message = "Trovati " + scan.servers + " server";
+            }
+            $cordovaToast.showShortBottom(message);
+          }
+        });
       }
-      $cordovaToast.showShortBottom(message);
-    }
-  });
-}
-};
-$scope.connect = function(server) {
-  $scope.settings.url = server.ip;
-  $scope.settings.port = server.port;
-  $scope.save();
-};
+    },function(err) {
+      $ionicPopup.alert({
+        title: 'Errore',
+        template: err
+      });
+    });
+  };
+  $scope.connect = function(server) {
+    $scope.settings.url = server.ip;
+    $scope.settings.port = server.port;
+    $scope.save();
+  };
 })
