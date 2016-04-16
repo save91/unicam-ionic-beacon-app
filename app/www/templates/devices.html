@@ -19,7 +19,7 @@
             <div class="handle"></div>
           </div>
         </label>
-        <input class="button button-positive" ng-if="(device.uuid === 0 || !device.automatic) && device.type === 'Apriporta'" type="button" ng-disabled="device.disable" ng-model="device.state" ng-click="open(device)" value="Apri">
+        <input class="button button-positive" ng-if="(device.uuid === 0 || !device.automatic) && device.type === 'Apriporta'" type="button" ng-disabled="device.disable" ng-model="device.state" ng-click="open(device);" value="Apri">
       </div>
     </div>
     <button on-tap="update()" class="button button-block button-positive">Aggiorna</button>

@@ -30,6 +30,7 @@ angular.module('app.controllers.devices', [])
   });
 
   $scope.$on('$ionicView.enter',function(){
+    updateDevice();
     console.log("Enter");
     $cordovaBeacon.getRangedRegions().then(
       function(res) {
@@ -58,21 +59,17 @@ angular.module('app.controllers.devices', [])
     });
   }
 
-  $scope.$on('$ionicView.enter',function(){
-    updateDevice();
-  });
-
   $scope.update = function() {
     updateDevice();
   };
 
   var on = function(device) {
     Devices.action(device.id, "on");
-  }
+  };
 
   var off = function(device) {
     Devices.action(device.id, "off");
-  }
+  };
 
   $scope.change_state = function(device) {
     if(device.state) {
@@ -80,5 +77,10 @@ angular.module('app.controllers.devices', [])
     } else {
       off(device);
     }
-  }
+  };
+
+  $scope.open = function(device) {
+    console.log("open");
+    Devices.action(device.id, "open");
+  };
 });
