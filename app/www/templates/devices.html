@@ -22,7 +22,7 @@
         <input class="button button-positive" ng-if="(device.uuid === 0 || !device.automatic) && device.type === 'Apriporta'" type="button" ng-disabled="device.disable" ng-model="device.state" ng-click="open(device);" value="Apri">
       </div>
     </div>
-    <button on-tap="update()" class="button button-block button-positive">Aggiorna</button>
+    <md-button on-tap="update()" class="md-raised">Aggiorna</md-button>
     <div class="padding"></div><div class="padding"></div>
   </ion-content>
   <!-- Fine contenuto della pagina principale-->

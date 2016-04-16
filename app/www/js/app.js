@@ -3,6 +3,7 @@
 var app = angular.module('app', [
   'ionic',
   'ngCordova',
+  'ngMaterial',
   'app.controllers.home',
   'app.controllers.menu',
   'app.controllers.devices',
