@@ -1,40 +1,57 @@
 <ion-view view-title="ProximitySystem">
   <!-- Contenuto della pagina principale -->
   <ion-content>
-    <div class="card">
-      <div class="item item-divider">
-        Benvenuto<span data-ng-if="user.username !== ''"> {{user.firstname}}</span>!
-      </div>
-      <div data-ng-if="user.username !== ''" class="item item-avatar">
-        <img src="{{user.photo}}">
-        <h2>{{user.username}}</h2>
-        <p>{{user.firstname}} {{user.lastname}}</p>
-      </div>
-      <div class="item item-text-wrap">
-        Quest'app ti permette di controllare il tuo ufficio in modo semplice e veloce!!!
-      </div>
-      <div data-ng-if="user.block" class="item item-text-wrap">
-        Siamo spiacenti, il tuo account risulta bloccato. Verifca se è stato
-        attivato<br />
-        <button data-ng-click="check()" class="button button-outline button-positive">
+    <md-card>
+      <md-toolbar class="md-whiteframe-z2">
+          <div layout="row" layout-align="center center">
+            <p class="margin-home">Benvenuto<span data-ng-if="user.username !== ''"> {{user.firstname}}</span>!</p>
+          </div>
+        </md-toolbar>
+        <md-card-title data-ng-if="user.username === ''">
+          <p>ATTENIONE: Non sei ancora loggato. Cosa aspetti? Loggati!</p>
+        </md-card-title>
+        <md-card-title data-ng-if="user.username !== ''">
+          <md-card-title-media>
+            <img src="{{user.photo}}" class="logo3 size-img-home card-media" alt="image caption">
+          </md-card-title-media>
+          <md-card-content  style="margin-top: -16px;">
+        <strong class="azzurro">Nome:</strong> {{user.firstname}}<br>
+        <strong class="rosso"> Cognome:</strong> {{user.lastname}}<br>
+        <strong class="arancione"> Username:</strong> {{user.username}}<br>
+          </md-card-content>
+        </md-card-title>
+        <div data-ng-if="user.block" layout="row">
+        <p class="padding-blockuser">Siamo spiacenti, il tuo account risulta bloccato. Verifca se è stato
+        attivato.</p>
+        <div>
+        <md-button style="margin-top: 26px" on-tap="check()" class="md-raised md-primary">
           Verifica
-        </button>
+        </md-button>
       </div>
-      <div data-ng-if="user.username !== '' && !user.block" class="item item-text-wrap">
-        Seleziona Cerca iBeacon per vedere i beacon registrati e segnalarne di nuovi
-        all'amministratore
       </div>
-      <div data-ng-if="!connection.state" class="item item-text-wrap">
-        ATTENZIONE: non sei connesso con il server, vai su impostazioni
-        per modificare l'indirizzo del server <br />
-        <button data-ng-click="check_connection()" class="button button-outline button-positive">
-          Verifica connessione
-        </button>
-      </div>
-      <div data-ng-if="user.username !== '' && !user.block" class="item item-text-wrap">
-        Seleziona Elenco Dispositivi per accedere e telecomandare i tuoi device!
-      </div>
+      <div data-ng-if="!connection.state" layout="row">
+      <p class="padding-blockuser">ATTENZIONE: non sei connesso con il server, vai su impostazioni
+      per modificare l'indirizzo del server</p>
+      <div>
+      <md-button style="margin-top: 26px" on-tap="check_connection()" class="md-raised md-primary">
+        Verifica
+      </md-button>
     </div>
+    </div>
+    </md-card>
+    <md-card>
+      <md-toolbar class="md-whiteframe-z2">
+          <div layout="row" layout-align="center center">
+            <p class="margin-home">Come funziona Proximity System?</p>
+          </div>
+        </md-toolbar>
+        <md-card-content>
+            <p>Quest'app ti permette di controllare il tuo ufficio in modo semplice e veloce!!!</p>
+            <p> Seleziona Cerca iBeacon per vedere i beacon registrati e segnalarne di nuovi
+            all'amministratore </p>
+            <p> Seleziona Elenco Dispositivi per accedere e telecomandare i tuoi device!</p>
+        </md-card-content>
+      </md-card>
   </ion-content>
   <!-- Fine contenuto della pagina principale-->
 </ion-view>

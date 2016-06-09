@@ -1,4 +1,4 @@
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
   $urlRouterProvider.otherwise('/app/home');
   $stateProvider.state('app', {
     url: '/app',
@@ -46,5 +46,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
 
   });
-
+  $mdThemingProvider.theme('default')
+    .primaryPalette('red')
+    .accentPalette('amber')
 });
