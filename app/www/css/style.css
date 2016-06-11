@@ -272,3 +272,9 @@ width:190px;
 .red-background {
   background-color:  #C62828;
 }
+.white-background {
+  background-color: white;
+}
+.margin-nav {
+  margin-bottom: 25px;
+}

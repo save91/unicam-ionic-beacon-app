@@ -17,8 +17,10 @@
       </md-toolbar>
       <md-toolbar class="immagine"   layout="column" layout-align="start center">
       <span flex></span>
-      <center><img src="{{user.photo}}" class="avatar">
-        <p class="bianco">{{user.firstname}}</p></center>
+      <center>
+        <img data-ng-if="user.username !== ''" src="{{user.photo}}" class="avatar">
+        <img  data-ng-if="user.username === ''" src="img/icon.png" class="avatar margin-nav">
+        <p data-ng-if="user.username !== ''" class="bianco">{{user.firstname}}</p></center>
       </md-toolbar>
       <ion-list>
         <ion-item  class="item item-icon-left" menu-close href="#/app/">
