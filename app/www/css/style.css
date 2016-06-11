@@ -89,7 +89,7 @@
   height: 141px;
 }
 .immagine{
-  background-image: url("/img/daterialdesign.jpg") !important;
+  background-image: url("../img/daterialdesign.jpg") !important;
   background-size: 100% 100% !important;
   height: 140px !important;
 }
