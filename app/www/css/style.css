@@ -91,7 +91,7 @@
 .immagine{
   background-image: url("/img/daterialdesign.jpg") !important;
   background-size: 100% 100% !important;
-  height: 200px !important;
+  height: 140px !important;
 }
 .avatar{
   width: 80px;
@@ -265,4 +265,10 @@ width:190px;
 .size-img-home {
   height: 70px;
   width: 70px;
+}
+.item-complex .item-content, .item{
+    background-color:  #C62828;
+}
+.red-background {
+  background-color:  #C62828;
 }
