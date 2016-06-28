@@ -19,7 +19,7 @@
   border: 0;
 }
 .immagine2{
-  background-image: url("/img/immaginehome2.png") !important;
+  background-image: url("../img/immaginehome2.png") !important;
   background-size: 100% 100% !important;
 }
 .sfondo {background-color: #FAFAFA !important;}
