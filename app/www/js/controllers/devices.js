@@ -45,10 +45,10 @@ angular.module('app.controllers.devices', [])
     Devices.all().then(function(response) {
       $scope.devices = response.data;
       for(var i = 0; i<$scope.devices.length; i++) {
-        if($scope.devices[i].uuid === 0) {
-          $scope.devices[i].disable = false;
-        } else {
+        if($scope.devices[i]._beacon) {
           $scope.devices[i].disable = true;
+        } else {
+          $scope.devices[i].disable = false;
         }
       }
     }, function(response) {
@@ -64,15 +64,15 @@ angular.module('app.controllers.devices', [])
   };
 
   var on = function(device) {
-    Devices.action(device.id, "on");
+    Devices.action(device._id, "on");
   };
 
   var off = function(device) {
-    Devices.action(device.id, "off");
+    Devices.action(device._id, "off");
   };
 
   $scope.change_state = function(device) {
-    if(device.state) {
+    if(device._GPIO.value) {
       on(device);
     } else {
       off(device);

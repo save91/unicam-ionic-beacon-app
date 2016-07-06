@@ -8,21 +8,17 @@
           </div>
         </md-toolbar>
         <md-card-title>
-          <md-card-title-media>
-            <img ng-src="img/ionic.png" class="logo3 size-img-home card-media" alt="image caption">
-          </md-card-title-media>
           <md-card-content  style="margin-top: -16px;">
         <strong class="rosso">Nome:</strong> {{device.name}}<br>
         <strong class="verde">Descrizione:</strong> {{device.description}}<br>
-        <span ng-if="device.uuid !== 0"><strong  class="rosso"> Proximity:</strong> {{device.proximity}}<br></span>
-        <span ng-if="device.uuid !== 0"><strong class="arancione"> Distanza:</strong> {{device.accuracy}}<br></span>
-        <md-checkbox ng-if="(device.uuid === 0 || !device.automatic) && device.type === 'Lampada'" ng-disabled="device.disable" ng-model="device.state" ng-change="change_state(device)">
-          Attivo
-        </md-checkbox>
+        <span ng-if="device._beacon"><strong  class="rosso"> Proximity:</strong> {{device.proximity}}<br></span>
+        <span ng-if="device._beacon "><strong class="arancione"> Distanza:</strong> {{device.accuracy}}<br></span>
+        <md-switch ng-if="(device._beacon.uuid === 0 || !device.automatic) && device.type === 'Lampada'" ng-disabled="device.disable" ng-model="device._GPIO.value" ng-change="change_state(device)"> {{device._GPIO.value ? "Spegni" : "Accendi"}}
+        </md-switch>
           </md-card-content>
         </md-card-title>
         <md-card-actions  style="margin-top: -32px;" layout="row" layout-align="end end" >
-          <md-button ng-if="(device.uuid === 0 || !device.automatic) && device.type === 'Apriporta'" ng-disabled="device.disable" ng-model="device.state" ng-click="open(device);"  class="md-raised md-primary">Apri</md-button>
+          <md-button ng-if="(device.uuid === 0 || !device.automatic) && device.type === 'Apriporta'" ng-disabled="device.disable" ng-model="device._GPIO.value" ng-click="open(device);"  class="md-raised md-primary">Apri</md-button>
         </md-card-actions>
           </md-card>
     <div class="list">

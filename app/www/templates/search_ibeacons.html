@@ -18,8 +18,8 @@
           <strong class="verde">BlueupMini</strong><br>
           <strong class="azzurro">Major:</strong> {{value.major}}<br>
           <strong class="rosso">Minor:</strong> {{value.minor}}<br>
-          <strong class="arancione">Proximity:</strong> {{value.proximity}}<br>
-          <strong class="lime">Distanza:</strong> {{value.accuracy}}<br>
+          <strong data-ng-if="value.proximity" class="arancione">Proximity:</strong> {{value.proximity}}<br>
+          <strong data-ng-if="value.accuracy" class="lime">Distanza:</strong> {{value.accuracy}}<br>
         </md-card-title>
       </md-card-content>
       <md-card-actions data-ng-if="!value.state" layout="row" layout-align="end center">
