@@ -11,21 +11,19 @@ angular.module('app.services.ibeacons',[])
       notifyEntryStateOnDisplay: false
     },
     add: function(uuid, major, minor) {
-      return $http.post(MY_SERVER.get() + '/beacon',{
+      return $http.post(MY_SERVER.get() + '/api/v2.0/beacon',{
         uuid: uuid,
         major: major,
         minor: minor
       });
     },
     all: function() {
-      return $http.get(MY_SERVER.get() + '/beacon')
+      return $http.get(MY_SERVER.get() + '/api/v2.0/beacon')
     },
     regions: [{
       name: "e-xtrategy",
       identifier: "BlueUp",
       uuid: "ACFD065E-C3C0-11E3-9BBE-1A514932AC01",
-      major: "0",
-      minor: "0",
       notifyEntryStateOnDisplay: false
     }]
   };

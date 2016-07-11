@@ -2,19 +2,19 @@
   <!-- Contenuto della pagina principale -->
   <ion-content>
     <div class="list">
-      <label class="item item-input">
+      <label class="item white-background item-input">
         <span class="input-label">Indirizzo</span>
         <input type="text" ng-model="settings.url">
       </label>
-      <label class="item item-input">
+      <label class="item white-background item-input">
         <span class="input-label">porta</span>
         <input type="text" ng-model="settings.port">
       </label>
-      <label class="item">
+      <label class="item white-background">
         <button class="button button-block button-positive" ng-click="save()">Salva</button>
       </label>
     </div>
-    <label class="item">
+    <label class="item white-background">
       <button class="button button-block button-positive" ng-click="search()">Ricerca server</button>
     </label>
     <div class="list" data-ng-if="servers.length">

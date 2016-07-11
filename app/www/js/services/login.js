@@ -11,7 +11,7 @@ angular.module('app.services.login',[])
   };
   Login.login = function(username, password) {
     var deferred = $q.defer();
-    $http.post(MY_SERVER.get() + '/user/login',
+    $http.post(MY_SERVER.get() + '/api/v2.0/user/login',
     {
       username: username,
       password: password
@@ -44,7 +44,7 @@ angular.module('app.services.login',[])
   };
   Login.getUser = function(username) {
     var deferred = $q.defer();
-    $http.get(MY_SERVER.get() + '/user/' + username)
+    $http.get(MY_SERVER.get() + '/api/v2.0/user/' + username)
       .then(function(response) {
         Login.user.username = response.data.username;
         Login.user.firstname = response.data.firstname;

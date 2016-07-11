@@ -1,29 +1,34 @@
 <ion-view view-title="Dispositivi">
   <!-- Contenuto della pagina principale -->
   <ion-content>
+    <md-card data-ng-repeat="device in devices">
+      <md-toolbar class="md-whiteframe-z2">
+          <div layout="row" layout-align="center center">
+            <p class="margin-home">Device numero {{$index + 1}}</p>
+          </div>
+        </md-toolbar>
+        <md-card-title>
+          <md-card-content  style="margin-top: -16px;">
+        <strong class="rosso">Nome:</strong> {{device.name}}<br>
+        <strong class="verde">Descrizione:</strong> {{device.description}}<br>
+        <span ng-if="device._Beacon.properties"><strong  class="rosso"> Proximity:</strong> {{device._Beacon.properties.proximity}}<br></span>
+        <span ng-if="device._Beacon.properties "><strong class="arancione"> Distanza:</strong> {{device._Beacon.properties.accuracy}}<br></span>
+        <md-switch ng-if="(device._Beacon.properties.uuid === 0 || !device.automatic) && device.type === 'Lampada'" ng-disabled="device.disable" ng-model="device._GPIO.value" ng-change="change_state(device)"> {{device._GPIO.value ? "Spegni" : "Accendi"}}
+        </md-switch>
+          </md-card-content>
+        </md-card-title>
+        <md-card-actions  style="margin-top: -32px;" layout="row" layout-align="end end" >
+          <md-button ng-if="(device._Beacon.properties.uuid === 0 || !device.automatic) && device.type === 'Apriporta'" ng-disabled="device.disable" ng-model="device._GPIO.value" ng-click="open(device);"  class="md-raised md-primary">Apri</md-button>
+        </md-card-actions>
+          </md-card>
     <div class="list">
       <div data-ng-if="!devices.length" class="card">
-        <div class="item item-text-wrap">
+        <div class="item white-background item-text-wrap">
           Nessun dispositivo trovato.
         </div>
       </div>
-      <div data-ng-repeat="device in devices" class="item item-thumbnail-left item-toggle item-button-right">
-        <img ng-src="img/ionic.png">
-        <h2>{{device.name}}</h2>
-        <p>{{device.description}}</p>
-        <p ng-if="device.uuid !== 0">Proximity: {{device.proximity}}</p>
-        <p ng-if="device.uuid !== 0">Distanza: {{device.accuracy}}</p>
-        <label ng-if="(device.uuid === 0 || !device.automatic) && device.type === 'Lampada'" class="toggle toggle-assertive">
-          <input type="checkbox" ng-disabled="device.disable" ng-model="device.state" ng-change="change_state(device)">
-          <div class="track">
-            <div class="handle"></div>
-          </div>
-        </label>
-        <input class="button button-positive" ng-if="(device.uuid === 0 || !device.automatic) && device.type === 'Apriporta'" type="button" ng-disabled="device.disable" ng-model="device.state" ng-click="open(device);" value="Apri">
-      </div>
     </div>
-    <button on-tap="update()" class="button button-block button-positive">Aggiorna</button>
-    <div class="padding"></div><div class="padding"></div>
-  </ion-content>
-  <!-- Fine contenuto della pagina principale-->
 </ion-view>
+<md-button class="md-fab md-accent md-fab-bottom-right" aria-label="Add" on-tap="update()">
+    <md-icon style="fill: white" md-svg-icon="img/refresh.svg"></md-icon>
+  </md-button>

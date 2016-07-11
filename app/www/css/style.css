@@ -1,1 +1,280 @@
-/* Empty. Add your own CSS if you like */
+.material-icons.md-48 { font-size: 48px; }
+ @media screen and (min-width: 960px) and (min-height: 480px) {
+   .altezza {
+   height: 100% !important;
+  }
+}
+.larghezza{
+  width: 100% !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+.posizione{
+  padding-left:  20px !important;
+}
+.posizione1{
+  margin-left: 10px !important;
+}
+.no-hover:hover{
+  border: 0;
+}
+.immagine2{
+  background-image: url("../img/immaginehome2.png") !important;
+  background-size: 100% 100% !important;
+}
+.sfondo {background-color: #FAFAFA !important;}
+.bianco {color: white !important;}
+.lime {color: #a6d276;}
+.verde { color: green; }
+.rosso {color: red;}
+.blu {color: blue;}
+.arancione {color: orange;}
+.grigio { color: #636363 !important;}
+.azzurro { color: #4AACD3;}
+.nero{color: black;}
+.menu-item {
+  background: none;
+  border-width: 0;
+  cursor: pointer;
+  display: block;
+  color: #333;
+  font-size: inherit;
+  height: 42px;
+  line-height: 42px;
+  max-height: 42px;
+  opacity: 1;
+  margin: 0;
+  outline: none;
+  padding-left: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+  z-index: 1;
+}
+.sroll{
+  position: relative;
+  height: 100%;
+  overflow-y: scroll;
+}
+.tabsdemoDynamicHeight {
+  background-color: transparent !important; }
+  .tabsdemoDynamicHeight {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1; }
+    .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+      background: white; }
+  .tabsdemoDynamicHeight md-content h1:first-child {
+    margin-top: 0;
+   }
+    md-icon svg {
+      fill: inherit;
+    }
+.logo{
+   width: 100px;
+    height: 100px;
+    border-radius: 20%;
+ }
+ .logo-avatar{
+    width: 100px;
+     height: 100px;
+     border-radius: 80%;
+  }
+
+.length {
+  length: 300px;
+}
+.logo2{
+  width: 400px;
+  height: 141px;
+}
+.immagine{
+  background-image: url("../img/daterialdesign.jpg") !important;
+  background-size: 100% 100% !important;
+  height: 140px !important;
+}
+.avatar{
+  width: 80px;
+  height: 80px;
+  border-radius: 70%;
+}
+.center{
+    text-align:center;
+    margin: 0 auto;
+    padding:0px;
+}
+.colortoolbar{
+  background-color: #F5F5F5 !important;
+}
+
+.logo3{
+  border-radius: 70%;
+}
+.move-up2 {
+  position: relative;
+  top: 220px !important;
+}
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+@media screen and (min-width: 960px) {
+.immagine1{
+  background-image: url("/img/immaginehome2.png") !important;
+  background-size: 100% 100% !important;
+  height: 180px !important;
+  width: 500px !important;
+}
+.move-up1 {
+  position: relative;
+  top: 150px !important;
+  z-index: 70;
+}
+
+.altezza-tool {
+ min-height: 250px !important;
+}
+.move-up4 {
+ position: relative;
+ margin-top: -100px;
+ z-index: 50;
+}
+
+.move-up {
+ position: relative;;
+ top: -100px;
+ z-index: 50;
+}
+.move-up3 {
+ position: relative;;
+ top: -40px;
+ z-index: 50;
+}
+}
+@media screen and (max-width: 960px) {
+.immagine1{
+  background-image: url("/img/immaginehome2.png") !important;
+  background-size: 100% 100% !important;
+  height: 150px !important;
+  width: 350px !important;
+}
+.altezza-tool {
+ min-height: 250px !important;
+}
+.move-up1 {
+  position: relative;
+  top: 120px !important;
+  z-index: 70;
+}
+.move-up4 {
+ position: relative;
+ margin-top: -170px !important;
+ z-index: 50;
+}
+.move-up {
+ position: relative;;
+ top: -158px;
+ z-index: 50;
+}
+.move-up3 {
+ position: relative;;
+ top: -40px;
+ z-index: 50;
+}
+}
+.move-up-logo {
+ position: relative;
+ top: -60px;
+ z-index: 40;
+}
+
+
+.altezza1{
+  height: 50px;
+}
+.altezza2{
+  height: 100px;
+}
+.hierachyanimation.hierachyenter {
+    -o-transform: scale(0);
+    -ms-transform: scale(0);
+    -moz-transform: scale(0);
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -o-animation: hierachyenter 0.69s;
+    -ms-animation: hierachyenter 0.69s;
+    -moz-animation: hierachyenter 0.69s;
+    -webkit-animation: hierachyenter 0.69s;
+    animation: hierachyenter 0.69s;
+    -moz-animation-fill-mode: forwards;
+    -ms-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+@keyframes hierachyenter {
+    0% {transform: scale(0);}
+    100% {transform: scale(1);}
+}
+
+@-o-keyframes hierachyenter {
+    0% {transform: scale(0);}
+    100% {transform: scale(1);}
+}
+
+@-ms-keyframes hierachyenter {
+    0% {transform: scale(0);}
+    100% {transform: scale(1);}
+}
+
+@-moz-keyframes hierachyenter {
+    0% {transform: scale(0);}
+    100% {transform: scale(1);}
+}
+
+@-webkit-keyframes hierachyenter {
+    0% {transform: scale(0);}
+    100% {transform: scale(1);}
+}
+.toolbar-input {
+  margin-top: 25px !important;
+}
+footer{
+  margin-bottom: 0px !important;
+}
+.contact_list .contactButton {
+  text-align: left;
+}
+
+.contact_list {
+  display: inline-block;
+}
+.nav-text {
+position:relative;
+display:table-cell;
+vertical-align:middle;
+width:190px;
+ font-family: 'Titillium Web', sans-serif;
+}
+.md-sidenav .body .section {
+  overflow-y: hidden;
+}
+.margin-home {
+  margin-top: 16px;
+}
+.padding-blockuser {
+  margin-left: 16px;
+}
+.size-img-home {
+  height: 70px;
+  width: 70px;
+}
+.item-complex .item-content, .item{
+    background-color:  #C62828;
+}
+.red-background {
+  background-color:  #C62828;
+}
+.white-background {
+  background-color: white;
+}
+.margin-nav {
+  margin-bottom: 25px;
+}

@@ -11,31 +11,45 @@
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable">
-      <h1 class="title">Menu</h1>
-    </ion-header-bar>
-    <ion-content>
+    <ion-content class="red-background">
+      <md-toolbar class="md-whiteframe-z2 md-hue-2" >
+          <center><p class="bianco margin-home">Proximity <strong>System</strong></p></center>
+      </md-toolbar>
+      <md-toolbar class="immagine"   layout="column" layout-align="start center">
+      <span flex></span>
+      <center>
+        <img data-ng-if="user.username !== ''" src="{{user.photo}}" class="avatar">
+        <img  data-ng-if="user.username === ''" src="img/icon.png" class="avatar margin-nav">
+        <p data-ng-if="user.username !== ''" class="bianco">{{user.firstname}}</p></center>
+      </md-toolbar>
       <ion-list>
-        <ion-item class="item item-icon-left" menu-close href="#/app/">
-          <i class="icon ion-home"></i>Home
+        <ion-item  class="item item-icon-left" menu-close href="#/app/">
+          <i class="icon ion-home bianco"></i>
+          <p class="bianco">Home</p>
         </ion-item>
         <ion-item data-ng-if="user.username !== '' && connection.state && !user.block" class="item item-icon-left" menu-close href="#/app/search_ibeacons">
-          <i class="icon ion-location"></i>Cerca iBeacons
+          <i class="bianco icon ion-location"></i>
+          <p class="bianco">Cerca iBeacons</p>
         </ion-item>
         <ion-item data-ng-if="user.username !== '' && connection.state && !user.block" class="item item-icon-left" menu-close href="#/app/devices">
-          <i class="icon ion-archive"></i>Elenco dispositivi
+          <i class="bianco icon ion-archive"></i>
+          <p class="bianco">Elenco dispositivi</p>
         </ion-item>
         <ion-item class="item item-icon-left" menu-close href="#/app/settings">
-          <i class="icon ion-settings"></i>Impostazioni
+          <i class="bianco icon ion-settings"></i>
+          <p class="bianco">Impostazioni</p>
         </ion-item>
         <ion-item data-ng-if="user.username === '' && connection.state" class="item item-icon-left" data-ng-click="signup()" menu-close>
-          <i class="icon ion-person-add"></i>Registrati
+          <i class="bianco icon ion-person-add"></i>
+          <p class="bianco">Registrati</p>
         </ion-item>
         <ion-item data-ng-if="user.username === '' && connection.state" class="item item-icon-left" data-ng-click="login()" menu-close>
-          <i class="icon ion-log-in"></i>Login
+          <i class="bianco icon ion-log-in"></i>
+          <p class="bianco">Login</p>
         </ion-item>
         <ion-item data-ng-if="user.username !== '' && connection.state" class="item item-icon-left" data-ng-click="logout()" menu-close>
-          <i class="icon ion-log-out"></i>Logout
+          <i class="bianco icon ion-log-out"></i>
+          <p class="bianco">Logout</p>
         </ion-item>
       </ion-list>
     </ion-content>

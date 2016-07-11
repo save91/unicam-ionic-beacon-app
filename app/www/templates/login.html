@@ -1,25 +1,26 @@
 <ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Login</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Chiudi</button>
-    </div>
-  </ion-header-bar>
-  <ion-content>
-    <form ng-submit="doLogin()">
-      <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="loginData.username">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
-        </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
-        </label>
-      </div>
-    </form>
-  </ion-content>
+  <md-toolbar class="immagine2 md-tall md-whiteframe-z2">
+  </md-toolbar>
+  <div hierachy-display class="altezza1" layout="row" layout-align="center start">
+    <img src="img/icon.png" class="logo move-up-logo md-whiteframe-z4">
+  </div>
+  <div layout="row" layout-align="center start">
+    <span class=" md-headline">Proximity <strong class="grigio">System</strong></span>
+  </div>
+  <center><span class="grigio"> connettiti subito!</span></center>
+      <form ng-submit="doLogin()">
+        <div  class="list margin-home">
+          <label class="item item-input white-background">
+            <span class="input-label">Username</span>
+            <input type="text" ng-model="loginData.username">
+          </label>
+          <label class="item item-input white-background">
+            <span class="input-label">Password</span>
+            <input type="password" ng-model="loginData.password">
+          </label>
+          <div layout="row" class="margin-home" layout-align="center center">
+        <md-button class="md-primary md-raised" type="submit"><span class="bianco">Accedi</span></md-button>
+        </div>
+        </div>
+      </form>
 </ion-modal-view>

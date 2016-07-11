@@ -8,11 +8,11 @@ angular.module('app.services.devices',[])
 		all: function() {
 			return $http({
 				method: 'GET',
-				url: MY_SERVER.get() + '/device/output'
+				url: MY_SERVER.get() + '/api/v2.0/device/output'
 			});
 		},
 		action: function(id, value) {
-			return $http.put(MY_SERVER.get() + '/device/' + id + '/' + value);
+			return $http.put(MY_SERVER.get() + '/api/v2.0/device/' + id + '/' + value);
 	}
 };
 });

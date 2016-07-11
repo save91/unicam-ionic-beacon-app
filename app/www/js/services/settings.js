@@ -4,7 +4,7 @@ angular.module('app.services.settings',[])
   return {
     hello: function(ip, port) {
       var deferred = $q.defer();
-      $http.get('http://' + ip + ':' + port + '/hello').then(
+      $http.get('http://' + ip + ':' + port + '/api/v2.0/setting/hello').then(
         function(res) {
           if(res.data.name === "ProximitySystem") {
             var response = {
@@ -22,6 +22,6 @@ angular.module('app.services.settings',[])
         }
       );
       return deferred.promise;
-    } 
+    }
   };
 });

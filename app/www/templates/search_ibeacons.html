@@ -1,19 +1,34 @@
 <ion-view view-title="Cerca iBeacons">
   <!-- Contenuto della pagina principale -->
   <ion-content>
-    <div class="list">
-      <div data-ng-repeat="(key, value) in beacons" class="item item-thumbnail-left item-button-right">
-        <img data-ng-src="img/BlueupMini.jpg">
-        <h2>BlueupMini</h2>
-        <p>Major: {{value.major}}</p>
-        <p>Minor: {{value.minor}}</p>
-        <p>Proximity: {{value.proximity}}</p>
-        <p>Distanza: {{value.accuracy}}</p>
-        <button data-ng-if="!value.state" class="button button-positive" data-ng-click="add(value.uuid, value.major, value.minor)">
+      <div data-ng-repeat="(key, value) in beacons">
+        <md-card>
+      <md-toolbar class="md-whiteframe-z2">
+        <div layout="row" layout-align="center center">
+          <p class="margin-home bianco">Beacon numero {{$index + 1}}</p>
+        </div>
+      </md-toolbar>
+      <md-card-title>
+        <md-card-title-media>
+          <div>
+            <img data-ng-src="img/blueup.png" class="logo3 md-media-lg card-media" alt="image caption">
+          </div>
+        </md-card-title-media>
+        <md-card-content>
+          <strong class="verde">BlueupMini</strong><br>
+          <strong class="azzurro">Major:</strong> {{value.major}}<br>
+          <strong class="rosso">Minor:</strong> {{value.minor}}<br>
+          <strong data-ng-if="value.proximity" class="arancione">Proximity:</strong> {{value.proximity}}<br>
+          <strong data-ng-if="value.accuracy" class="lime">Distanza:</strong> {{value.accuracy}}<br>
+        </md-card-title>
+      </md-card-content>
+      <md-card-actions data-ng-if="!value.state" layout="row" layout-align="end center">
+        <md-button  class="md-primary md-raised" data-ng-click="add(value.uuid, value.major, value.minor)">
           Segnala
-        </button>
+        </md-button>
+    </md-card-actions>
+  </md-card>
       </div>
-    </div>
   </ion-content>
   <!-- Fine contenuto della pagina principale-->
 </ion-view>
