@@ -31,7 +31,7 @@ angular.module('app.controllers.search', [])
 
     $scope.$on('$ionicView.enter',function(){
       getBeacons();
-      console.log("Enter");
+      
       Beacons.startRangingBeaconsInRegion(0);
     });
 

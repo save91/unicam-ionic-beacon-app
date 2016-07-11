@@ -24,8 +24,6 @@ angular.module('app.services.ibeacons',[])
       name: "e-xtrategy",
       identifier: "BlueUp",
       uuid: "ACFD065E-C3C0-11E3-9BBE-1A514932AC01",
-      major: "0",
-      minor: "0",
       notifyEntryStateOnDisplay: false
     }]
   };
