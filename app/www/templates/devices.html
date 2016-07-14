@@ -4,7 +4,7 @@
     <md-card data-ng-repeat="device in devices">
       <md-toolbar class="md-whiteframe-z2">
           <div layout="row" layout-align="center center">
-            <p class="margin-home">Device numero {{$index + 1}}</p>
+            <p class="margin-home">{{device.name}}</p>
           </div>
         </md-toolbar>
         <md-card-title>
@@ -15,20 +15,20 @@
         <span ng-if="device._Beacon.properties "><strong class="arancione"> Distanza:</strong> {{device._Beacon.properties.accuracy}}<br></span>
         <md-switch ng-if="(device._Beacon.properties.uuid === 0 || !device.automatic) && device.type === 'Lampada'" ng-disabled="device.disable" ng-model="device._GPIO.value" ng-change="change_state(device)"> {{device._GPIO.value ? "Spegni" : "Accendi"}}
         </md-switch>
-          </md-card-content>
-        </md-card-title>
-        <md-card-actions  style="margin-top: -32px;" layout="row" layout-align="end end" >
-          <md-button ng-if="(device._Beacon.properties.uuid === 0 || !device.automatic) && device.type === 'Apriporta'" ng-disabled="device.disable" ng-model="device._GPIO.value" ng-click="open(device);"  class="md-raised md-primary">Apri</md-button>
-        </md-card-actions>
-          </md-card>
-    <div class="list">
-      <div data-ng-if="!devices.length" class="card">
-        <div class="item white-background item-text-wrap">
-          Nessun dispositivo trovato.
+        <md-button ng-if="(device._Beacon.properties.uuid === 0 || !device.automatic) && (device.type === 'Apriporta' || device.type === 'Cancello')" ng-disabled="device.disable" on-tap="open(device);"  class="md-raised md-primary">Apri</md-button>
+        <md-button ng-if="(device._Beacon.properties.uuid === 0 || !device.automatic) && device.type === 'Cancello'" ng-disabled="device.disable" on-tap="close(device);"  class="md-raised md-primary">Chiudi</md-button>
+
+      </md-card-content>
+    </md-card-title>
+      </md-card>
+      <div class="list">
+        <div data-ng-if="!devices.length" class="card">
+          <div class="item white-background item-text-wrap">
+            Nessun dispositivo trovato.
+          </div>
         </div>
       </div>
-    </div>
-</ion-view>
-<md-button class="md-fab md-accent md-fab-bottom-right" aria-label="Add" on-tap="update()">
+    </ion-view>
+  <md-button class="md-fab md-accent md-fab-bottom-right" aria-label="Add" on-tap="update()">
     <md-icon style="fill: white" md-svg-icon="img/refresh.svg"></md-icon>
   </md-button>

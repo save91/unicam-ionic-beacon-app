@@ -52,7 +52,7 @@ angular.module('app.controllers.menu', [])
       quality: 80,
       destinationType: Camera.DestinationType.DATA_URL,
       sourceType: Camera.PictureSourceType.CAMERA,
-      allowEdit: false,
+      allowEdit: true,
       encodingType: Camera.EncodingType.JPEG,
       targetWidth: 300,
       targetHeight: 300,
@@ -123,9 +123,9 @@ angular.module('app.controllers.menu', [])
   $scope.checkUsername = function() {
     Signup.checkUsername($scope.signupData.username).then(
       function(response) {
-        ok = true;
-      }, function(response) {
         ok = false;
+      }, function(response) {
+        ok = true;
       }
     );
   }

@@ -6,7 +6,7 @@ Per installare ed eseguire l'app proximitySystem sono necessari NodeJS, Ionic e 
 
 ```
 cd app
-npm install
-ionic install
+ionic state restore
+bower install -f
+ionic run android
 ```
-

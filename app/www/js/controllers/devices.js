@@ -81,7 +81,10 @@ angular.module('app.controllers.devices', [])
   };
 
   $scope.open = function(device) {
-    console.log("open");
-    Devices.action(device.id, "open");
+    Devices.action(device._id, "on");
+  };
+
+  $scope.close = function(device) {
+    Devices.action(device._id, "off");
   };
 });
