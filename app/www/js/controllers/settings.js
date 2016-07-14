@@ -19,7 +19,7 @@ angular.module('app.controllers.settings', [])
 
   var check_connection = function() {
     var message = "Connesso";
-    show('Connessione...');
+    $scope.connection.state = false;
     Settings.hello(MY_SERVER.url, MY_SERVER.port)
     .then(function(response) {
       $scope.connection.state = true;
@@ -27,7 +27,6 @@ angular.module('app.controllers.settings', [])
       $scope.connection.state = false;
       message = "Impossibile connettersi";
     }).finally(function() {
-      hide();
       $cordovaToast.showShortBottom(message);
     });
   };
