@@ -41,8 +41,8 @@ angular.module('app.controllers.settings', [])
   $scope.search = function() {
     var scan = {
       count: 0,
-      init: 2,
-      max: 200,
+      init: 1,
+      max: 254,
       servers: 0
     };
     networkinterface.getIPAddress(function (readIp) {
