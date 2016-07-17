@@ -8,7 +8,7 @@
           </div>
         </md-toolbar>
         <md-card-title data-ng-if="user.username === ''">
-          <p>ATTENIONE: Non sei ancora loggato. Cosa aspetti? Loggati!</p>
+          <p>ATTENZIONE: Non sei ancora loggato. Cosa aspetti? Loggati!</p>
         </md-card-title>
         <md-card-title data-ng-if="user.username !== ''">
           <md-card-title-media>
@@ -21,7 +21,7 @@
           </md-card-content>
         </md-card-title>
         <div data-ng-if="user.block" layout="row">
-        <p class="padding-blockuser">Siamo spiacenti, il tuo account risulta bloccato. Verifca se è stato
+        <p class="padding-blockuser">Siamo spiacenti, il tuo account risulta bloccato. Verifica se è stato
         attivato.</p>
         <div>
         <md-button style="margin-top: 26px" on-tap="check()" class="md-raised md-primary">
@@ -32,11 +32,9 @@
       <div data-ng-if="!connection.state" layout="row">
       <p class="padding-blockuser">ATTENZIONE: non sei connesso con il server, vai su impostazioni
       per modificare l'indirizzo del server</p>
-      <div>
       <md-button style="margin-top: 26px" on-tap="check_connection()" class="md-raised md-primary">
         Verifica
       </md-button>
-    </div>
     </div>
     </md-card>
     <md-card>
