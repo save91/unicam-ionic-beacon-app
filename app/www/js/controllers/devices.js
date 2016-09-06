@@ -84,6 +84,10 @@ angular.module('app.controllers.devices', [])
     Devices.action(device._id, "on");
   };
 
+  $scope.push = function(device) {
+    Devices.action(device._id, "push");
+  };
+
   $scope.close = function(device) {
     Devices.action(device._id, "off");
   };

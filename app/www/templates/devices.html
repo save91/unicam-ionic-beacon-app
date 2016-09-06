@@ -15,7 +15,7 @@
         <span ng-if="device._Beacon.properties "><strong class="arancione"> Distanza:</strong> {{device._Beacon.properties.accuracy}}<br></span>
         <md-switch ng-if="(device._Beacon.properties.uuid === 0 || !device.automatic) && device.type === 'Lampada'" ng-disabled="device.disable" ng-model="device._GPIO.value" ng-change="change_state(device)"> {{device._GPIO.value ? "Spegni" : "Accendi"}}
         </md-switch>
-        <md-button ng-if="(device._Beacon.properties.uuid === 0 || !device.automatic) && (device.type === 'Apriporta' || device.type === 'Cancello')" ng-disabled="device.disable" on-tap="open(device);"  class="md-raised md-primary">Apri</md-button>
+        <md-button ng-if="(device._Beacon.properties.uuid === 0 || !device.automatic) && (device.type === 'Apriporta' || device.type === 'Cancello')" ng-disabled="device.disable" on-tap="push(device);"  class="md-raised md-primary">Apri</md-button>
         <md-button ng-if="(device._Beacon.properties.uuid === 0 || !device.automatic) && device.type === 'Cancello'" ng-disabled="device.disable" on-tap="close(device);"  class="md-raised md-primary">Chiudi</md-button>
 
       </md-card-content>
