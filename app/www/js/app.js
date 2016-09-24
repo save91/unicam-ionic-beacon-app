@@ -3,6 +3,7 @@
 var app = angular.module('app', [
   'ionic',
   'ngCordova',
+  'btford.socket-io',
   'ngMaterial',
   'app.controllers.home',
   'app.controllers.menu',
@@ -14,7 +15,8 @@ var app = angular.module('app', [
   'app.services.devices',
   'app.services.ibeacons',
   'app.services.settings',
-  'app.services.login'])
+  'app.services.login',
+  'app.services.socket'])
   .run(function($ionicPlatform, $http, Login, $ionicHistory, $cordovaBeacon) {
 
     $ionicPlatform.ready(function() {
