@@ -1,6 +1,6 @@
 angular.module('app.controllers.devices', [])
 
-.controller('DevicesCtrl', function($scope, $rootScope, $ionicPopup, $ionicPlatform, $cordovaBeacon, Beacons, Devices) {
+.controller('DevicesCtrl', function($scope, $rootScope, $ionicPopup, $ionicPlatform, $cordovaBeacon, Beacons, Devices, $state, $ionicHistory, mySocket) {
   $scope.devices = [];
   $scope.beacons = [];
 
@@ -54,11 +54,15 @@ angular.module('app.controllers.devices', [])
       }
     }, function(response) {
       $ionicPopup.alert({
-        title: 'Errore',
-        template: response.data
+        title: 'Attenzione',
+        template: "Il tuo account è stato bloccato"
       });
+      $ionicHistory.nextViewOptions({
+        disableBack: true
+      });
+      $state.go("app.home");
     });
-  }
+  };
 
   $scope.update = function() {
     updateDevice();
@@ -91,4 +95,13 @@ angular.module('app.controllers.devices', [])
   $scope.close = function(device) {
     Devices.action(device._id, "off");
   };
+
+  mySocket.on('update:device', function() {
+    updateDevice();
+  });
+
+  mySocket.on('update:user', function() {
+    updateDevice();
+  });
+
 });
