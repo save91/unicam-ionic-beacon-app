@@ -7,7 +7,7 @@
   <author email="saverio.tosi@studenti.unicam.it" href="http://example.com.com/">
     Saverio Tosi
   </author>
-  <content src="http://192.168.0.104:8100" original-src="index.html"/>
+  <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
