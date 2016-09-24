@@ -1,6 +1,6 @@
 angular.module('app.controllers.home', [])
 
-.controller('HomeCtrl', function($scope, $cordovaToast, $ionicLoading, $location, $ionicLoading, $cordovaToast, MY_SERVER, $ionicPopup, $ionicModal, Login, Signup, Settings, $ionicPlatform, $cordovaCamera, $http) {
+.controller('HomeCtrl', function($scope, $cordovaToast, $ionicLoading, $location, $ionicLoading, $cordovaToast, MY_SERVER, $ionicPopup, $ionicModal, Login, Signup, Settings, $ionicPlatform, $cordovaCamera, $http, mySocket) {
   $scope.user = Login.user;
   $scope.connection = Login.connection;
   var show = function(message) {
@@ -42,5 +42,9 @@ angular.module('app.controllers.home', [])
 
   $scope.$on('$ionicView.enter',function(){
     $scope.check_connection();
+  });
+
+  mySocket.on('update:user', function() {
+    Login.getUser($scope.user.username);
   });
 })
