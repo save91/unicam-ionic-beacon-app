@@ -11,6 +11,7 @@ angular.module('app.controllers.search', [])
   var hide = function(){
     $ionicLoading.hide();
   };
+
   $ionicPlatform.ready(function() {
     Beacons.setCallbackDidRangeBeaconsInRegion(function(pluginResult) {
       var uniqueBeaconKey;

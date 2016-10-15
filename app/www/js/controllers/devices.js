@@ -4,7 +4,35 @@ angular.module('app.controllers.devices', [])
   $scope.devices = [];
   $scope.beacons = [];
 
-
+  var ranging = function() {
+    var uniqueBeaconKey;
+    for(var i = 0; i < $scope.beacons.length; i++) {
+      uniqueBeaconKey = $scope.beacons[i].uuid + ":" + $scope.beacons[i].major + ":" + $scope.beacons[i].minor;
+      for(var j = 0; j < $scope.devices.length; j++) {
+        if($scope.devices[j]._Beacon) {
+          if(uniqueBeaconKey === $scope.devices[j]._Beacon.properties.uuid + ":" + $scope.devices[j]._Beacon.properties.major + ":" + $scope.devices[j]._Beacon.properties.minor) {
+            $scope.devices[j]._Beacon.properties.proximity = $scope.beacons[i].proximity;
+            $scope.devices[j]._Beacon.properties.accuracy = $scope.beacons[i].accuracy;
+            if($scope.devices[j]._Beacon.properties.proximity === "ProximityImmediate") {
+              $scope.devices[j].disable = false;
+              if($scope.devices[j].automatic) {
+                if($scope.devices[j]._GPIO.value === false) {
+                  on($scope.devices[j]);
+                }
+              }
+            } else {
+              $scope.devices[j].disable = true;
+              if($scope.devices[j].automatic) {
+                if($scope.devices[j]._GPIO.value === true) {
+                  off($scope.devices[j]);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  };
 
   $scope.$on('$ionicView.enter',function(){
     updateDevice();
@@ -12,35 +40,9 @@ angular.module('app.controllers.devices', [])
     $ionicPlatform.ready(function() {
     Beacons.startRangingBeaconsInRegion(0);
 
-
     $rootScope.$on("$cordovaBeacon:didRangeBeaconsInRegion", function(event, pluginResult, Devices) {
-      var uniqueBeaconKey;
-      for(var i = 0; i < pluginResult.beacons.length; i++) {
-        uniqueBeaconKey = pluginResult.beacons[i].uuid + ":" + pluginResult.beacons[i].major + ":" + pluginResult.beacons[i].minor;
-        for(var j = 0; j < $scope.devices.length; j++) {
-          if($scope.devices[j]._Beacon) {
-            if(uniqueBeaconKey === $scope.devices[j]._Beacon.properties.uuid + ":" + $scope.devices[j]._Beacon.properties.major + ":" + $scope.devices[j]._Beacon.properties.minor) {
-              $scope.devices[j]._Beacon.properties.proximity = pluginResult.beacons[i].proximity;
-              $scope.devices[j]._Beacon.properties.accuracy = pluginResult.beacons[i].accuracy;
-              if($scope.devices[j]._Beacon.properties.proximity === "ProximityImmediate") {
-                $scope.devices[j].disable = false;
-                if($scope.devices[j].automatic) {
-                  if($scope.devices[j]._GPIO.value === false) {
-                    on($scope.devices[j]);
-                  }
-                }
-              } else {
-                $scope.devices[j].disable = true;
-                if($scope.devices[j].automatic) {
-                  if($scope.devices[j]._GPIO.value === true) {
-                    off($scope.devices[j]);
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+      $scope.beacons = pluginResult.beacons;
+      ranging();
       $scope.$apply();
     });
   });
@@ -56,6 +58,7 @@ angular.module('app.controllers.devices', [])
           $scope.devices[i].disable = false;
         }
       }
+      ranging();
     }, function(response) {
       $ionicPopup.alert({
         title: 'Attenzione',
@@ -89,15 +92,21 @@ angular.module('app.controllers.devices', [])
   };
 
   $scope.open = function(device) {
-    Devices.action(device._id, "on");
+    if(!device.disable) {
+      Devices.action(device._id, "on");
+    }
   };
 
   $scope.push = function(device) {
-    Devices.action(device._id, "push");
+    if(!device.disable) {
+      Devices.action(device._id, "push");
+    }
   };
 
   $scope.close = function(device) {
-    Devices.action(device._id, "off");
+    if(!device.disable) {
+      Devices.action(device._id, "off");
+    }
   };
 
   mySocket.on('update:device', function() {
