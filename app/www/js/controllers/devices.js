@@ -25,12 +25,16 @@ angular.module('app.controllers.devices', [])
               if($scope.devices[j]._Beacon.properties.proximity === "ProximityImmediate") {
                 $scope.devices[j].disable = false;
                 if($scope.devices[j].automatic) {
-                  on($scope.devices[j]);
+                  if($scope.devices[j]._GPIO.value === false) {
+                    on($scope.devices[j]);
+                  }
                 }
               } else {
                 $scope.devices[j].disable = true;
                 if($scope.devices[j].automatic) {
-                  off($scope.devices[j]);
+                  if($scope.devices[j]._GPIO.value === true) {
+                    off($scope.devices[j]);
+                  }
                 }
               }
             }

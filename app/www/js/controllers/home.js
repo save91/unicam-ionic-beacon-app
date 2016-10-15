@@ -40,11 +40,13 @@ angular.module('app.controllers.home', [])
     });
   };
 
-  $scope.$on('$ionicView.enter',function(){
-    $scope.check_connection();
-  });
+  if($scope.connection.state) {
+    $scope.$on('$ionicView.enter',function(){
+      $scope.check_connection();
+    });
 
-  mySocket.on('update:user', function() {
-    Login.getUser($scope.user.username);
-  });
+    mySocket.on('update:user', function() {
+      Login.getUser($scope.user.username);
+    });
+  }
 })

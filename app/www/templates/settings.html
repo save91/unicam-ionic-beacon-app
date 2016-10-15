@@ -14,7 +14,7 @@
         Salva
       </md-button>
     </div>
-    <md-button style="margin-top: 26px" on-tap="search()" class="md-raised md-primary">
+    <md-button style="margin-top: 26px" on-tap="search()" ng-disabled="searching" class="md-raised md-primary">
       Ricerca server
     </md-button>
     <div data-ng-if="servers.length">

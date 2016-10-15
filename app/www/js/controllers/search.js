@@ -1,7 +1,7 @@
 
 angular.module('app.controllers.search', [])
 
-.controller('SearchCtrl', function($scope, $rootScope, $ionicPlatform, $ionicLoading, $ionicPopup, Beacons) {
+.controller('SearchCtrl', function($scope, $rootScope, $ionicPlatform, $ionicLoading, $ionicPopup, Beacons, mySocket) {
   $scope.beacons = {};
   var show = function(message) {
     $ionicLoading.show({
@@ -31,7 +31,7 @@ angular.module('app.controllers.search', [])
 
     $scope.$on('$ionicView.enter',function(){
       getBeacons();
-      
+
       Beacons.startRangingBeaconsInRegion(0);
     });
 
@@ -80,4 +80,8 @@ angular.module('app.controllers.search', [])
       $scope.beacons = {};
     });
   }
+
+  mySocket.on('update:beacon', function() {
+    getBeacons();
+  });
 })

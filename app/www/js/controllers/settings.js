@@ -1,8 +1,9 @@
 angular.module('app.controllers.settings', [])
 
-.controller('SettingsCtrl', function($scope, $cordovaToast, $location, $ionicPopup, $ionicLoading, MY_SERVER, Settings, Login) {
+.controller('SettingsCtrl', function($scope, $cordovaToast, $location, $ionicPopup, $ionicLoading, MY_SERVER, Settings, Login, mySocket) {
   $scope.settings = {};
   $scope.servers = [];
+  $scope.searching = false;
   $scope.connection = Login.connection;
   $scope.$on('$ionicView.enter',function(){
     $scope.settings.url = MY_SERVER.url;
@@ -49,7 +50,7 @@ angular.module('app.controllers.settings', [])
       var ip = readIp.split('.');
       debugger;
       $scope.servers = [];
-      show("Ricerca server...");
+      $scope.searching = true;
       for(var i = scan.init; i < scan.max; i++) {
         var app = i;
         Settings.hello(ip[0] + '.' + ip[1] + '.' + ip[2] + '.' + i, "8000").then(function(res) {
@@ -66,7 +67,7 @@ angular.module('app.controllers.settings', [])
         .finally(function() {
           scan.count++;
           if(scan.count >= (scan.max - scan.init)) {
-            hide();
+            $scope.searching = false;
             var message = "Nessun server trovato";
             if(scan.servers === 1) {
               message = "Trovato un server";

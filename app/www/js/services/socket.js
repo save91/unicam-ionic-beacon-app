@@ -6,6 +6,5 @@ angular.module('app.services.socket',[])
     mySocket = socketFactory({
       ioSocket: myIoSocket
     });
-
-  return mySocket;
+  return mySocket
 });
