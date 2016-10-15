@@ -1,7 +1,7 @@
 <ion-view view-title="Cerca iBeacons">
   <!-- Contenuto della pagina principale -->
   <ion-content>
-      <div data-ng-repeat="(key, value) in beacons">
+      <div data-ng-repeat="(key, value) in beacons|orderBy:'_id'">
         <md-card>
       <md-toolbar class="md-whiteframe-z2">
         <div layout="row" layout-align="center center">

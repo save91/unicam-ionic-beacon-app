@@ -1,7 +1,7 @@
 <ion-view view-title="Dispositivi">
   <!-- Contenuto della pagina principale -->
   <ion-content>
-    <md-card data-ng-repeat="device in devices">
+    <md-card data-ng-repeat="device in devices|orderBy:'_id'">
       <md-toolbar class="md-whiteframe-z2">
           <div layout="row" layout-align="center center">
             <p class="margin-home">{{device.name}}</p>
